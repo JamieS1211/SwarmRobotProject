@@ -1,0 +1,85 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"54 ./i2C.h
+[; ;./i2C.h: 54: void i2C_SendData(unsigned char i2C_address, unsigned char bytes[], unsigned char numberOfBytes);
+[v _i2C_SendData `(v ~T0 @X0 0 ef3`uc`*uc`uc ]
+"63
+[; ;./i2C.h: 63: void i2C_ReceiveData(unsigned char i2C_address, unsigned char sendBytes[], unsigned char numberOfSendBytes, unsigned char *recievedBytes, unsigned char numberOfReceivedBytes);
+[v _i2C_ReceiveData `(v ~T0 @X0 0 ef5`uc`*uc`uc`*uc`uc ]
+"15 vL53L0X.c
+[; ;vL53L0X.c: 15: void vl53l0x_i2C_SendData(unsigned char slave_address, unsigned char device_register, unsigned char value) {
+[v _vl53l0x_i2C_SendData `(v ~T0 @X0 1 ef3`uc`uc`uc ]
+{
+[e :U _vl53l0x_i2C_SendData ]
+[v _slave_address `uc ~T0 @X0 1 r1 ]
+[v _device_register `uc ~T0 @X0 1 r2 ]
+[v _value `uc ~T0 @X0 1 r3 ]
+[f ]
+[v F21 `uc ~T0 @X0 -> 2 `i s ]
+[i F21
+:U ..
+"16
+[; ;vL53L0X.c: 16:     unsigned char data[2] = {device_register, value};
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+..
+]
+[v _data `uc ~T0 @X0 -> 2 `i a ]
+[e = _data F21 ]
+[e ; = *U + &U _data * -> -> -> 0 `i `ui `ux -> -> # *U &U _data `ui `ux _device_register = *U + &U _data * -> -> -> 1 `i `ui `ux -> -> # *U &U _data `ui `ux _value ]
+"17
+[; ;vL53L0X.c: 17:     i2C_SendData(slave_address, data, 2);
+[e ( _i2C_SendData (3 , , _slave_address &U _data -> -> 2 `i `uc ]
+"18
+[; ;vL53L0X.c: 18: }
+[e :UE 1 ]
+}
+"24
+[; ;vL53L0X.c: 24: unsigned char vl53l0x_I2C_ReceiveData(unsigned char slave_address, unsigned char device_register) {
+[v _vl53l0x_I2C_ReceiveData `(uc ~T0 @X0 1 ef2`uc`uc ]
+{
+[e :U _vl53l0x_I2C_ReceiveData ]
+[v _slave_address `uc ~T0 @X0 1 r1 ]
+[v _device_register `uc ~T0 @X0 1 r2 ]
+[f ]
+[v F26 `uc ~T0 @X0 -> -> 1 `i `ux s ]
+[i F26
+:U ..
+"25
+[; ;vL53L0X.c: 25:     unsigned char sendData[1] = {device_register};
+-> -> 0 `i `uc
+..
+]
+[v _sendData `uc ~T0 @X0 -> -> 1 `i `ux a ]
+[e = _sendData F26 ]
+[e = *U + &U _sendData * -> -> -> 0 `i `ui `ux -> -> # *U &U _sendData `ui `ux _device_register ]
+[v F28 `uc ~T0 @X0 -> -> 1 `i `ux s ]
+[i F28
+:U ..
+"26
+[; ;vL53L0X.c: 26:     unsigned char recievedData[1] = {0x00};
+-> -> 0 `i `uc
+..
+]
+[v _recievedData `uc ~T0 @X0 -> -> 1 `i `ux a ]
+[e = _recievedData F28 ]
+"27
+[; ;vL53L0X.c: 27:     i2C_ReceiveData(slave_address, sendData, 1, &recievedData, 1);
+[e ( _i2C_ReceiveData (4 , , , , _slave_address &U _sendData -> -> 1 `i `uc -> &U _recievedData `*uc -> -> 1 `i `uc ]
+"29
+[; ;vL53L0X.c: 29:     return recievedData[0];
+[e ) *U + &U _recievedData * -> -> -> 0 `i `ui `ux -> -> # *U &U _recievedData `ui `ux ]
+[e $UE 2  ]
+"30
+[; ;vL53L0X.c: 30: }
+[e :UE 2 ]
+}
+"36
+[; ;vL53L0X.c: 36: void vl5310x_Setup(void) {
+[v _vl5310x_Setup `(v ~T0 @X0 1 ef ]
+{
+[e :U _vl5310x_Setup ]
+[f ]
+"38
+[; ;vL53L0X.c: 38: }
+[e :UE 3 ]
+}

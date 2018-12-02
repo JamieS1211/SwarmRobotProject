@@ -1,0 +1,439 @@
+[p LITE_MODE AUTOSTATIC IEEE_FLT IEEE_DBL LFSROK EMI_WORD ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 18F2550 ]
+[d frameptr 4065 ]
+"4 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c99\common\fleq.c
+[v ___fleq __fleq `(b  1 e 0 0 ]
+"62 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c99\common\float.c
+[v ___ftpack __ftpack `(f  1 e 4 0 ]
+"86 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c99\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 4 0 ]
+"54 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c99\common\ftdiv.c
+[v ___ftdiv __ftdiv `(f  1 e 4 0 ]
+"62 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c99\common\ftmul.c
+[v ___ftmul __ftmul `(f  1 e 4 0 ]
+"19 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c99\common\ftsub.c
+[v ___ftsub __ftsub `(f  1 e 4 0 ]
+"10 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c99\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"245
+[v ___flsub __flsub `(d  1 e 4 0 ]
+"11 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c99\common\sprcdiv.c
+[v ___fldiv __fldiv `(d  1 e 4 0 ]
+"8 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c99\common\sprcmul.c
+[v ___flmul __flmul `(d  1 e 4 0 ]
+"15 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c99\common\Umul32.c
+[v ___lmul __lmul `(ul  1 e 4 0 ]
+"91 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c99\common\Umul64.c
+[v ___omul __omul `(uo  1 e 8 0 ]
+"17 C:\Users\Jamie\MPLABXProjects\SwarmRobotProject.X\i2C.c
+[v _i2C_Setup i2C_Setup `(v  1 e 1 0 ]
+"76
+[v _i2C_Wait i2C_Wait `(v  1 e 1 0 ]
+"87
+[v _i2C_Start i2C_Start `(v  1 e 1 0 ]
+"100
+[v _i2C_RepeatedStart i2C_RepeatedStart `(v  1 e 1 0 ]
+"113
+[v _i2C_Stop i2C_Stop `(v  1 e 1 0 ]
+"125
+[v _i2C_SendData i2C_SendData `(v  1 e 1 0 ]
+"159
+[v _i2C_ReceiveData i2C_ReceiveData `(v  1 e 1 0 ]
+"19 C:\Users\Jamie\MPLABXProjects\SwarmRobotProject.X\interrupts.c
+[v _interrupts_Setup interrupts_Setup `(v  1 e 1 0 ]
+"90
+[v _interrupts_Event interrupts_Event `IIH(v  1 e 1 0 ]
+"58 C:\Users\Jamie\MPLABXProjects\SwarmRobotProject.X\main.c
+[v _main main `(v  1 e 1 0 ]
+"24 C:\Users\Jamie\MPLABXProjects\SwarmRobotProject.X\vL53L0X.c
+[v _vl53l0x_I2C_ReceiveData vl53l0x_I2C_ReceiveData `(uc  1 e 1 0 ]
+"36
+[v _vl5310x_Setup vl5310x_Setup `(v  1 e 1 0 ]
+[s S71 . 1 `uc 1 RB0 1 0 :1:0 
+`uc 1 RB1 1 0 :1:1 
+`uc 1 RB2 1 0 :1:2 
+`uc 1 RB3 1 0 :1:3 
+`uc 1 RB4 1 0 :1:4 
+`uc 1 RB5 1 0 :1:5 
+`uc 1 RB6 1 0 :1:6 
+`uc 1 RB7 1 0 :1:7 
+]
+"2286 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f2550.h
+[s S379 . 1 `uc 1 INT0 1 0 :1:0 
+`uc 1 INT1 1 0 :1:1 
+`uc 1 INT2 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 PGM 1 0 :1:5 
+`uc 1 PGC 1 0 :1:6 
+`uc 1 PGD 1 0 :1:7 
+]
+[s S387 . 1 `uc 1 . 1 0 :3:0 
+`uc 1 CCP2_PA2 1 0 :1:3 
+]
+[u S390 . 1 `S71 1 . 1 0 `S379 1 . 1 0 `S387 1 . 1 0 ]
+[v _PORTBbits PORTBbits `VES390  1 e 1 @3969 ]
+[s S62 . 1 `uc 1 TRISB0 1 0 :1:0 
+`uc 1 TRISB1 1 0 :1:1 
+`uc 1 TRISB2 1 0 :1:2 
+`uc 1 TRISB3 1 0 :1:3 
+`uc 1 TRISB4 1 0 :1:4 
+`uc 1 TRISB5 1 0 :1:5 
+`uc 1 TRISB6 1 0 :1:6 
+`uc 1 TRISB7 1 0 :1:7 
+]
+"3067
+[u S80 . 1 `S62 1 . 1 0 `S71 1 . 1 0 ]
+[v _TRISBbits TRISBbits `VES80  1 e 1 @3987 ]
+[s S252 . 1 `uc 1 TMR1IE 1 0 :1:0 
+`uc 1 TMR2IE 1 0 :1:1 
+`uc 1 CCP1IE 1 0 :1:2 
+`uc 1 SSPIE 1 0 :1:3 
+`uc 1 TXIE 1 0 :1:4 
+`uc 1 RCIE 1 0 :1:5 
+`uc 1 ADIE 1 0 :1:6 
+]
+"3491
+[s S260 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 TX1IE 1 0 :1:4 
+`uc 1 RC1IE 1 0 :1:5 
+]
+[u S264 . 1 `S252 1 . 1 0 `S260 1 . 1 0 ]
+[v _PIE1bits PIE1bits `VES264  1 e 1 @3997 ]
+[s S415 . 1 `uc 1 TMR1IF 1 0 :1:0 
+`uc 1 TMR2IF 1 0 :1:1 
+`uc 1 CCP1IF 1 0 :1:2 
+`uc 1 SSPIF 1 0 :1:3 
+`uc 1 TXIF 1 0 :1:4 
+`uc 1 RCIF 1 0 :1:5 
+`uc 1 ADIF 1 0 :1:6 
+]
+"3562
+[s S423 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 TX1IF 1 0 :1:4 
+`uc 1 RC1IF 1 0 :1:5 
+]
+[u S427 . 1 `S415 1 . 1 0 `S423 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES427  1 e 1 @3998 ]
+[s S308 . 1 `uc 1 TMR1IP 1 0 :1:0 
+`uc 1 TMR2IP 1 0 :1:1 
+`uc 1 CCP1IP 1 0 :1:2 
+`uc 1 SSPIP 1 0 :1:3 
+`uc 1 TXIP 1 0 :1:4 
+`uc 1 RCIP 1 0 :1:5 
+`uc 1 ADIP 1 0 :1:6 
+]
+"3633
+[s S316 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 TX1IP 1 0 :1:4 
+`uc 1 RC1IP 1 0 :1:5 
+]
+[u S320 . 1 `S308 1 . 1 0 `S316 1 . 1 0 ]
+[v _IPR1bits IPR1bits `VES320  1 e 1 @3999 ]
+[s S280 . 1 `uc 1 CCP2IE 1 0 :1:0 
+`uc 1 TMR3IE 1 0 :1:1 
+`uc 1 HLVDIE 1 0 :1:2 
+`uc 1 BCLIE 1 0 :1:3 
+`uc 1 EEIE 1 0 :1:4 
+`uc 1 USBIE 1 0 :1:5 
+`uc 1 CMIE 1 0 :1:6 
+`uc 1 OSCFIE 1 0 :1:7 
+]
+"3704
+[s S289 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 LVDIE 1 0 :1:2 
+]
+[u S292 . 1 `S280 1 . 1 0 `S289 1 . 1 0 ]
+[v _PIE2bits PIE2bits `VES292  1 e 1 @4000 ]
+[s S443 . 1 `uc 1 CCP2IF 1 0 :1:0 
+`uc 1 TMR3IF 1 0 :1:1 
+`uc 1 HLVDIF 1 0 :1:2 
+`uc 1 BCLIF 1 0 :1:3 
+`uc 1 EEIF 1 0 :1:4 
+`uc 1 USBIF 1 0 :1:5 
+`uc 1 CMIF 1 0 :1:6 
+`uc 1 OSCFIF 1 0 :1:7 
+]
+"3775
+[s S452 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 LVDIF 1 0 :1:2 
+]
+[u S455 . 1 `S443 1 . 1 0 `S452 1 . 1 0 ]
+[v _PIR2bits PIR2bits `VES455  1 e 1 @4001 ]
+[s S336 . 1 `uc 1 CCP2IP 1 0 :1:0 
+`uc 1 TMR3IP 1 0 :1:1 
+`uc 1 HLVDIP 1 0 :1:2 
+`uc 1 BCLIP 1 0 :1:3 
+`uc 1 EEIP 1 0 :1:4 
+`uc 1 USBIP 1 0 :1:5 
+`uc 1 CMIP 1 0 :1:6 
+`uc 1 OSCFIP 1 0 :1:7 
+]
+"3846
+[s S345 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 LVDIP 1 0 :1:2 
+]
+[u S348 . 1 `S336 1 . 1 0 `S345 1 . 1 0 ]
+[v _IPR2bits IPR2bits `VES348  1 e 1 @4002 ]
+[s S758 . 1 `uc 1 SEN 1 0 :1:0 
+`uc 1 RSEN 1 0 :1:1 
+`uc 1 PEN 1 0 :1:2 
+`uc 1 RCEN 1 0 :1:3 
+`uc 1 ACKEN 1 0 :1:4 
+`uc 1 ACKDT 1 0 :1:5 
+`uc 1 ACKSTAT 1 0 :1:6 
+`uc 1 GCEN 1 0 :1:7 
+]
+"5642
+[u S767 . 1 `S758 1 . 1 0 ]
+[v _SSPCON2bits SSPCON2bits `VES767  1 e 1 @4037 ]
+[s S732 . 1 `uc 1 SSPM 1 0 :4:0 
+`uc 1 CKP 1 0 :1:4 
+`uc 1 SSPEN 1 0 :1:5 
+`uc 1 SSPOV 1 0 :1:6 
+`uc 1 WCOL 1 0 :1:7 
+]
+"5707
+[s S738 . 1 `uc 1 SSPM0 1 0 :1:0 
+`uc 1 SSPM1 1 0 :1:1 
+`uc 1 SSPM2 1 0 :1:2 
+`uc 1 SSPM3 1 0 :1:3 
+]
+[u S743 . 1 `S732 1 . 1 0 `S738 1 . 1 0 ]
+[v _SSPCON1bits SSPCON1bits `VES743  1 e 1 @4038 ]
+[s S591 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 R_NOT_W 1 0 :1:2 
+]
+"5840
+[s S594 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 D_NOT_A 1 0 :1:5 
+]
+[s S597 . 1 `uc 1 BF 1 0 :1:0 
+`uc 1 UA 1 0 :1:1 
+`uc 1 R_nW 1 0 :1:2 
+`uc 1 S 1 0 :1:3 
+`uc 1 P 1 0 :1:4 
+`uc 1 D_nA 1 0 :1:5 
+`uc 1 CKE 1 0 :1:6 
+`uc 1 SMP 1 0 :1:7 
+]
+[s S606 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 R_W 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 D_A 1 0 :1:5 
+]
+[s S611 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 I2C_READ 1 0 :1:2 
+`uc 1 I2C_START 1 0 :1:3 
+`uc 1 I2C_STOP 1 0 :1:4 
+`uc 1 I2C_DAT 1 0 :1:5 
+]
+[s S617 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 nW 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 nA 1 0 :1:5 
+]
+[s S622 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 NOT_WRITE 1 0 :1:2 
+]
+[s S625 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 NOT_ADDRESS 1 0 :1:5 
+]
+[s S628 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 nWRITE 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 nADDRESS 1 0 :1:5 
+]
+[s S633 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 READ_WRITE 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 DATA_ADDRESS 1 0 :1:5 
+]
+[s S638 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 R 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 D 1 0 :1:5 
+]
+[s S643 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 RW 1 0 :1:2 
+`uc 1 START 1 0 :1:3 
+`uc 1 STOP 1 0 :1:4 
+`uc 1 DA 1 0 :1:5 
+]
+[s S649 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 NOT_W 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 NOT_A 1 0 :1:5 
+]
+[u S654 . 1 `S591 1 . 1 0 `S594 1 . 1 0 `S597 1 . 1 0 `S606 1 . 1 0 `S611 1 . 1 0 `S617 1 . 1 0 `S622 1 . 1 0 `S625 1 . 1 0 `S628 1 . 1 0 `S633 1 . 1 0 `S638 1 . 1 0 `S643 1 . 1 0 `S649 1 . 1 0 ]
+[v _SSPSTATbits SSPSTATbits `VES654  1 e 1 @4039 ]
+"6005
+[v _SSPADD SSPADD `VEuc  1 e 1 @4040 ]
+"6012
+[v _SSPBUF SSPBUF `VEuc  1 e 1 @4041 ]
+[s S36 . 1 `uc 1 T0PS 1 0 :3:0 
+`uc 1 PSA 1 0 :1:3 
+`uc 1 T0SE 1 0 :1:4 
+`uc 1 T0CS 1 0 :1:5 
+`uc 1 T08BIT 1 0 :1:6 
+`uc 1 TMR0ON 1 0 :1:7 
+]
+"6908
+[s S43 . 1 `uc 1 T0PS0 1 0 :1:0 
+`uc 1 T0PS1 1 0 :1:1 
+`uc 1 T0PS2 1 0 :1:2 
+]
+[u S47 . 1 `S36 1 . 1 0 `S43 1 . 1 0 ]
+[v _T0CONbits T0CONbits `VES47  1 e 1 @4053 ]
+[s S212 . 1 `uc 1 INT1IF 1 0 :1:0 
+`uc 1 INT2IF 1 0 :1:1 
+`uc 1 . 1 0 :1:2 
+`uc 1 INT1IE 1 0 :1:3 
+`uc 1 INT2IE 1 0 :1:4 
+`uc 1 . 1 0 :1:5 
+`uc 1 INT1IP 1 0 :1:6 
+`uc 1 INT2IP 1 0 :1:7 
+]
+"7259
+[s S221 . 1 `uc 1 INT1F 1 0 :1:0 
+`uc 1 INT2F 1 0 :1:1 
+`uc 1 . 1 0 :1:2 
+`uc 1 INT1E 1 0 :1:3 
+`uc 1 INT2E 1 0 :1:4 
+`uc 1 . 1 0 :1:5 
+`uc 1 INT1P 1 0 :1:6 
+`uc 1 INT2P 1 0 :1:7 
+]
+[u S230 . 1 `S212 1 . 1 0 `S221 1 . 1 0 ]
+[v _INTCON3bits INTCON3bits `VES230  1 e 1 @4080 ]
+[s S173 . 1 `uc 1 . 1 0 :7:0 
+`uc 1 NOT_RBPU 1 0 :1:7 
+]
+"7351
+[s S176 . 1 `uc 1 RBIP 1 0 :1:0 
+`uc 1 . 1 0 :1:1 
+`uc 1 TMR0IP 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 INTEDG2 1 0 :1:4 
+`uc 1 INTEDG1 1 0 :1:5 
+`uc 1 INTEDG0 1 0 :1:6 
+`uc 1 nRBPU 1 0 :1:7 
+]
+[s S185 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 T0IP 1 0 :1:2 
+`uc 1 . 1 0 :4:3 
+`uc 1 RBPU 1 0 :1:7 
+]
+[u S190 . 1 `S173 1 . 1 0 `S176 1 . 1 0 `S185 1 . 1 0 ]
+[v _INTCON2bits INTCON2bits `VES190  1 e 1 @4081 ]
+[s S124 . 1 `uc 1 RBIF 1 0 :1:0 
+`uc 1 INT0IF 1 0 :1:1 
+`uc 1 TMR0IF 1 0 :1:2 
+`uc 1 RBIE 1 0 :1:3 
+`uc 1 INT0IE 1 0 :1:4 
+`uc 1 TMR0IE 1 0 :1:5 
+`uc 1 PEIE_GIEL 1 0 :1:6 
+`uc 1 GIE_GIEH 1 0 :1:7 
+]
+"7433
+[s S133 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 INT0F 1 0 :1:1 
+`uc 1 T0IF 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 INT0E 1 0 :1:4 
+`uc 1 T0IE 1 0 :1:5 
+`uc 1 PEIE 1 0 :1:6 
+`uc 1 GIE 1 0 :1:7 
+]
+[s S142 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 GIEL 1 0 :1:6 
+`uc 1 GIEH 1 0 :1:7 
+]
+[u S146 . 1 `S124 1 . 1 0 `S133 1 . 1 0 `S142 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES146  1 e 1 @4082 ]
+"58 C:\Users\Jamie\MPLABXProjects\SwarmRobotProject.X\main.c
+[v _main main `(v  1 e 1 0 ]
+{
+"80
+} 0
+"36 C:\Users\Jamie\MPLABXProjects\SwarmRobotProject.X\vL53L0X.c
+[v _vl5310x_Setup vl5310x_Setup `(v  1 e 1 0 ]
+{
+"38
+} 0
+"19 C:\Users\Jamie\MPLABXProjects\SwarmRobotProject.X\interrupts.c
+[v _interrupts_Setup interrupts_Setup `(v  1 e 1 0 ]
+{
+"82
+} 0
+"17 C:\Users\Jamie\MPLABXProjects\SwarmRobotProject.X\i2C.c
+[v _i2C_Setup i2C_Setup `(v  1 e 1 0 ]
+{
+"69
+} 0
+"90 C:\Users\Jamie\MPLABXProjects\SwarmRobotProject.X\interrupts.c
+[v _interrupts_Event interrupts_Event `IIH(v  1 e 1 0 ]
+{
+"99
+[v interrupts_Event@value value `uc  1 a 1 19 ]
+"98
+[v interrupts_Event@device_register device_register `uc  1 a 1 18 ]
+"97
+[v interrupts_Event@slave_address slave_address `uc  1 a 1 17 ]
+"185
+} 0
+"24 C:\Users\Jamie\MPLABXProjects\SwarmRobotProject.X\vL53L0X.c
+[v _vl53l0x_I2C_ReceiveData vl53l0x_I2C_ReceiveData `(uc  1 e 1 0 ]
+{
+[v vl53l0x_I2C_ReceiveData@slave_address slave_address `uc  1 a 1 wreg ]
+"26
+[v vl53l0x_I2C_ReceiveData@recievedData recievedData `[1]uc  1 a 1 12 ]
+"25
+[v vl53l0x_I2C_ReceiveData@sendData sendData `[1]uc  1 a 1 11 ]
+"24
+[v vl53l0x_I2C_ReceiveData@slave_address slave_address `uc  1 a 1 wreg ]
+[v vl53l0x_I2C_ReceiveData@device_register device_register `uc  1 p 1 9 ]
+[v vl53l0x_I2C_ReceiveData@F26 F26 `[1]uc  1 s 1 F26 ]
+"25
+[v vl53l0x_I2C_ReceiveData@F28 F28 `[1]uc  1 s 1 F28 ]
+[v vl53l0x_I2C_ReceiveData@slave_address slave_address `uc  1 a 1 10 ]
+"30
+} 0
+"159 C:\Users\Jamie\MPLABXProjects\SwarmRobotProject.X\i2C.c
+[v _i2C_ReceiveData i2C_ReceiveData `(v  1 e 1 0 ]
+{
+[v i2C_ReceiveData@i2C_address i2C_address `uc  1 a 1 wreg ]
+"204
+[v i2C_ReceiveData@i_848 i `uc  1 a 1 8 ]
+"176
+[v i2C_ReceiveData@i i `uc  1 a 1 7 ]
+"159
+[v i2C_ReceiveData@i2C_address i2C_address `uc  1 a 1 wreg ]
+[v i2C_ReceiveData@sendBytes sendBytes `*.39uc  1 p 2 0 ]
+[v i2C_ReceiveData@numberOfSendBytes numberOfSendBytes `uc  1 p 1 2 ]
+[v i2C_ReceiveData@recievedBytesPointer recievedBytesPointer `*.39uc  1 p 2 3 ]
+[v i2C_ReceiveData@numberOfReceivedBytes numberOfReceivedBytes `uc  1 p 1 5 ]
+[v i2C_ReceiveData@i2C_address i2C_address `uc  1 a 1 6 ]
+"217
+} 0
+"113
+[v _i2C_Stop i2C_Stop `(v  1 e 1 0 ]
+{
+"116
+} 0
+"87
+[v _i2C_Start i2C_Start `(v  1 e 1 0 ]
+{
+"93
+} 0
+"100
+[v _i2C_RepeatedStart i2C_RepeatedStart `(v  1 e 1 0 ]
+{
+"106
+} 0
+"76
+[v _i2C_Wait i2C_Wait `(v  1 e 1 0 ]
+{
+"80
+} 0
