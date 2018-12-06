@@ -17,14 +17,48 @@
 #include "i2C.h"
 #include "vL53L0X.h"
 
-#pragma config WDT = OFF
-#pragma config FOSC = INTOSC_EC // 8 MHz clock (±2% accuracy) 
-#pragma config MCLRE = OFF
+#pragma config PLLDIV = 1           //PLL Prescaler Selection bits
+#pragma config CPUDIV = OSC1_PLL2   //System Clock Postscaler Selection bits
+#pragma config USBDIV = 1           //USB Clock Selection bit (used in Full-Speed USB mode only; UCFG:FSEN =  1)
+#pragma config FOSC = INTOSC_EC     //Oscillator Selection bits
+#pragma config FCMEN = OFF          //Fail-Safe Clock Monitor Enable bit
+#pragma config IESO = OFF           //Internal/External Oscillator Switchover bit
+#pragma config PWRT = OFF           //Power-up Timer Enable bit
+#pragma config BOR = ON             //Brown-out Reset Enable bits
+#pragma config BORV = 3             //Brown-out Reset Voltage bits
+#pragma config VREGEN = OFF         //USB Voltage Regulator Enable bit
+#pragma config WDT = OFF            //Watchdog Timer Enable bit
+#pragma config WDTPS = 32768        //Watchdog Timer Postscale Select bits
+#pragma config CCP2MX = ON          //CCP2 MUX bit
+#pragma config PBADEN = OFF         //PORTB A/D Enable bit
+#pragma config LPT1OSC = OFF        //Low-Power Timer 1 Oscillator Enable bit
+#pragma config MCLRE = OFF          //MCLR Pin Enable bit
+#pragma config STVREN = ON          //Stack Full/Underflow Reset Enable bit
+#pragma config LVP = ON             //Single-Supply ICSP Enable bit
+#pragma config XINST = OFF          //Extended Instruction Set Enable bit
+#pragma config CP0 = OFF            //Code Protection bit
+#pragma config CP1 = OFF            //Code Protection bit
+#pragma config CP2 = OFF            //Code Protection bit
+#pragma config CP3 = OFF            //Code Protection bit
+#pragma config CPB = OFF            //Boot Block Code Protection bit
+#pragma config CPD = OFF            //Data EEPROM Code Protection bit
+#pragma config WRT0 = OFF           //Write Protection bit
+#pragma config WRT1 = OFF           //Write Protection bit
+#pragma config WRT2 = OFF           //Write Protection bit
+#pragma config WRT3 = OFF           //Write Protection bit
+#pragma config WRTC = OFF           //Configuration Register Write Protection bit
+#pragma config WRTB = OFF           //Boot Block Write Protection bit
+#pragma config WRTD = OFF           //Data EEPROM Write Protection bit
+#pragma config EBTR0 = OFF          //Table Read Protection bit
+#pragma config EBTR1 = 1            //Table Read Protection bit
+#pragma config EBTR2 = OFF          //Table Read Protection bit
+#pragma config EBTR3 = OFF          //Table Read Protection bit
+#pragma config EBTRB = OFF          //Boot Block Table Read Protection bit
 
 // Pins and how this program uses them
 /*
  * 
- * 1  - MCLR/VPP/RE3                - [NONE]
+ * 1  - MCLR/VPP/RE3                - [PROGRAMMER VPP]
  * 2  - RA0/AN0                     - [NONE]
  * 3  - RA1/AN1                     - [NONE]
  * 4  - RA2/AN2/VREF-/CVREF         - [NONE]
@@ -50,8 +84,8 @@
  * 24 - RB3/AN9/CCP2(1)/VPO         - [NONE]
  * 25 - RB4/AN11/KBI0               - [NONE]
  * 26 - RB5/KBI1/PGM                - [NONE]
- * 27 - RB6/KBI2/PGC                - [NONE]
- * 28 - RB7/KBI3/PGD                - [TEST (output result of TOF sensor)]
+ * 27 - RB6/KBI2/PGC                - [TEST LED / PROGRAMMER PGC]
+ * 28 - RB7/KBI3/PGD                - [TEST LED / PROGRAMMER PGD]
  * 
  */
 
@@ -61,11 +95,11 @@ void main(void) {
     vl5310x_Setup(); //TODO - This function is incomplete! 
     
     //Setup timer 0 (linked to interrupt)
-    //Settings trigger interrupt approx. every 4 seconds
+    //Settings trigger interrupt approx. every 0.25 seconds
     T0CONbits.TMR0ON = 1;
-    T0CONbits.T08BIT = 0;
+    T0CONbits.T08BIT = 1;
     T0CONbits.T0CS = 0;
-    T0CONbits.T0SE = 1;
+    T0CONbits.T0SE = 0;
     T0CONbits.PSA = 0;
     T0CONbits.T0PS2 = 1;
     T0CONbits.T0PS1 = 1;
@@ -74,6 +108,7 @@ void main(void) {
     //<TEST CODE>
     //Set TRISB 7 to outputs (output result of TOF sensor)
     TRISBbits.TRISB7 = 0;
+    TRISBbits.TRISB6 = 0;
     //</TEST CODE>
     
     while(1);

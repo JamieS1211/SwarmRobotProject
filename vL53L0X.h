@@ -13,7 +13,7 @@
 /*
  * Send data to VL5310X using I2C
  */
-void vl53l0x_i2C_SendData(unsigned char slave_address, unsigned char device_register, unsigned char value);
+void vl53l0x_I2C_SendData(unsigned char slave_address, unsigned char device_register, unsigned char value);
 
 
 /*

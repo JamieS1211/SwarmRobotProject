@@ -8,6 +8,7 @@
 
 #include <xc.h>
 
+#include "interrupts.h"
 #include "i2C.h"
 #include "vL53L0X.h"
 
@@ -96,13 +97,18 @@ void __interrupt() interrupts_Event(void) {
         
         //<TEST CODE>
         unsigned char slave_address = 0x52;     //This is correctly shifted so last bit can be read or wright (0x29)
-        unsigned char device_register = 0x14;       //This should be register with result 
+        unsigned char device_register = 0x14;   //This should be register with result 
         unsigned char value = vl53l0x_I2C_ReceiveData(slave_address, device_register);
         
-        if (value > 0x7F) {
-            PORTBbits.RB7 = 1;
-        } else {
+        if (value < 75) {
             PORTBbits.RB7 = 0;
+            PORTBbits.RB6 = 0;
+        } else if (value < 90) {
+            PORTBbits.RB7 = 0;
+            PORTBbits.RB6 = 1;
+        } else {
+            PORTBbits.RB7 = 1;
+            PORTBbits.RB6 = 1;
         }
         //</TEST CODE/>
         

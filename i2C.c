@@ -8,6 +8,8 @@
 
 #include <xc.h>
 
+#include "i2C.h"
+
 //Pages 204 - 236 in data sheet
 
 /*
@@ -146,7 +148,7 @@ void i2C_SendData(unsigned char i2C_address, unsigned char bytes[], unsigned cha
         }
     }
     
-    i2C_Stop;
+    i2C_Stop();
 }
 
 
@@ -156,7 +158,7 @@ void i2C_SendData(unsigned char i2C_address, unsigned char bytes[], unsigned cha
  * NOTE: i2C_address must be given as bits 7:1 Address, last bit as 0
  * This is so the last bit can be altered to give read or wright
  */
-void i2C_ReceiveData(unsigned char i2C_address, unsigned char sendBytes[], unsigned char numberOfSendBytes, unsigned char *recievedBytesPointer, unsigned char numberOfReceivedBytes) {
+void i2C_ReceiveData(unsigned char i2C_address, unsigned char sendBytes[], unsigned char numberOfSendBytes, unsigned char secondStartType, unsigned char *recievedBytesPointer, unsigned char numberOfReceivedBytes) {
     i2C_Start();
     
     
@@ -185,7 +187,12 @@ void i2C_ReceiveData(unsigned char i2C_address, unsigned char sendBytes[], unsig
         }
     }
     
-    i2C_RepeatedStart();
+    if (secondStartType == RepeatedStart) {
+        i2C_RepeatedStart();
+    } else if (secondStartType == StopStart) {
+        i2C_Stop();
+        i2C_Start();
+    }
     
     
     //Send i2C address (but modify to be for reading)
@@ -213,5 +220,5 @@ void i2C_ReceiveData(unsigned char i2C_address, unsigned char sendBytes[], unsig
         while (SSPCON2bits.ACKEN);      //Wait for NACK to be finished
     }
     
-    i2C_Stop;
+    i2C_Stop();
 }
