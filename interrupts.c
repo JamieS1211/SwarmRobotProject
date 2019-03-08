@@ -100,15 +100,36 @@ void __interrupt() interrupts_Event(void) {
         unsigned char device_register = 0x14;   //This should be register with result 
         unsigned char value = vl53l0x_I2C_ReceiveData(slave_address, device_register);
         
-        if (value < 75) {
-            PORTBbits.RB7 = 0;
-            PORTBbits.RB6 = 0;
-        } else if (value < 90) {
-            PORTBbits.RB7 = 0;
-            PORTBbits.RB6 = 1;
-        } else {
+        if (value < 60) {
             PORTBbits.RB7 = 1;
             PORTBbits.RB6 = 1;
+            PORTBbits.RB4 = 1;  
+            PORTBbits.RB3 = 1;  
+            PORTBbits.RB2 = 1;                
+        } else if (value < 70) {            
+            PORTBbits.RB7 = 0;
+            PORTBbits.RB6 = 1;
+            PORTBbits.RB4 = 1;
+            PORTBbits.RB3 = 1;  
+            PORTBbits.RB2 = 1;   
+        } else if (value < 80) {            
+            PORTBbits.RB7 = 0;
+            PORTBbits.RB6 = 0;
+            PORTBbits.RB4 = 1;
+            PORTBbits.RB3 = 1;  
+            PORTBbits.RB2 = 1;   
+        } else if (value < 90) {            
+            PORTBbits.RB7 = 0;
+            PORTBbits.RB6 = 0;
+            PORTBbits.RB4 = 0;
+            PORTBbits.RB3 = 1;  
+            PORTBbits.RB2 = 1;   
+        } else {            
+            PORTBbits.RB7 = 0;
+            PORTBbits.RB6 = 0;
+            PORTBbits.RB4 = 0;
+            PORTBbits.RB3 = 0;  
+            PORTBbits.RB2 = 1;   
         }
         //</TEST CODE/>
         

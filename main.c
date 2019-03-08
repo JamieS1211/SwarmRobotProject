@@ -92,7 +92,7 @@
 void main(void) {   
     interrupts_Setup();
     i2C_Setup();
-    vl5310x_Setup(); //TODO - This function is incomplete! 
+    vl5310x_Setup(0x52); //TODO - This function is incomplete! 
     
     //Setup timer 0 (linked to interrupt)
     //Settings trigger interrupt approx. every 0.25 seconds
@@ -109,6 +109,9 @@ void main(void) {
     //Set TRISB 7 to outputs (output result of TOF sensor)
     TRISBbits.TRISB7 = 0;
     TRISBbits.TRISB6 = 0;
+    TRISBbits.TRISB4 = 0;
+    TRISBbits.TRISB3 = 0;
+    TRISBbits.TRISB2 = 0;
     //</TEST CODE>
     
     while(1);
