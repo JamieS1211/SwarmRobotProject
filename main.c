@@ -90,9 +90,9 @@
  */
 
 void main(void) {   
-    interrupts_Setup();
     i2C_Setup();
-    vl5310x_Setup(0x52); //TODO - This function is incomplete! 
+    vl5310x_Setup(0x52);
+    interrupts_Setup();
     
     //Setup timer 0 (linked to interrupt)
     //Settings trigger interrupt approx. every 0.25 seconds
@@ -113,7 +113,7 @@ void main(void) {
     TRISBbits.TRISB3 = 0;
     TRISBbits.TRISB2 = 0;
     //</TEST CODE>
-    
+        
     while(1);
     
     return;

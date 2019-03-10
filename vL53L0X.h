@@ -44,14 +44,8 @@ void vl5310x_Tuning(uint8_t slave_address);
 
 
 /*
- * Setup VL5310X to use specified timing budget (min 20000, max 200000) ~ affects accuracy
+ * Read range from VL5310X
  */
-void vl5310x_SetMeasurementTimingBudget(uint8_t slave_address, uint32_t targetTiming);
-
-
-/*
- * Setup VL5310X to be in continuous reading mode
- */
-void vl5310x_SetContinuousReading(uint8_t slave_address);
+uint16_t vl5310x_ReadRange(uint8_t slave_address);
 
 #endif //VL53L0X

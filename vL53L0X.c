@@ -35,97 +35,122 @@ uint8_t vl53l0x_I2C_ReceiveData(uint8_t slave_address, uint8_t device_register) 
  */
 void vl5310x_Setup(uint8_t slave_address) {
     //TODO Find documentation that gives details and configure as desired (Possibly Peter knows?)
-    //vl5310x_Initialisation(slave_address);
-    //vl5310x_Tuning(slave_address);
-    vl5310x_SetContinuousReading(slave_address);
+    vl5310x_Initialisation(slave_address);
+    
+    
+    
+    //SET TO CONTINEOUS AND HIGH ACCURACY
+	vl53l0x_I2C_SendData(slave_address, 0x44, 0x00);   //
+	vl53l0x_I2C_SendData(slave_address, 0x45, 0x0C);   //
+	vl53l0x_I2C_SendData(slave_address, 0x57, 0x50);   //
+	vl53l0x_I2C_SendData(slave_address, 0x56, 0x08);   //
+	vl53l0x_I2C_SendData(slave_address, 0x50, 0x08);   //
+	vl53l0x_I2C_SendData(slave_address, 0x51, 0x00);   //
+	vl53l0x_I2C_SendData(slave_address, 0x52, 0x75);   //
+	vl53l0x_I2C_SendData(slave_address, 0x46, 0x1D);   //
+	vl53l0x_I2C_SendData(slave_address, 0x71, 0x02);   //
+	vl53l0x_I2C_SendData(slave_address, 0x72, 0x8B);   //
+	vl53l0x_I2C_SendData(slave_address, 0x00, 0x01);   //
+	vl53l0x_I2C_SendData(slave_address, 0x0B, 0x01);   //
+	vl53l0x_I2C_SendData(slave_address, 0x00, 0x00);   //
+	vl53l0x_I2C_SendData(slave_address, 0x01, 0xE8);   //
+	vl53l0x_I2C_SendData(slave_address, 0x48, 0x48);   //
+	vl53l0x_I2C_SendData(slave_address, 0x47, 0x08);   //
+	vl53l0x_I2C_SendData(slave_address, 0x32, 0x03);   //
+	vl53l0x_I2C_SendData(slave_address, 0x30, 0x07);   //
+	vl53l0x_I2C_SendData(slave_address, 0xFF, 0x01);   //
+	vl53l0x_I2C_SendData(slave_address, 0x30, 0x20);   //
+	vl53l0x_I2C_SendData(slave_address, 0xFF, 0x00);   //
+	vl53l0x_I2C_SendData(slave_address, 0x70, 0x06);   //
+	vl53l0x_I2C_SendData(slave_address, 0x71, 0x01);   //
+	vl53l0x_I2C_SendData(slave_address, 0x72, 0xD7);   //
+	vl53l0x_I2C_SendData(slave_address, 0x71, 0x01);   //
+	vl53l0x_I2C_SendData(slave_address, 0x72, 0xD7);   //
+	vl53l0x_I2C_SendData(slave_address, 0x01, 0x02);   //
+	vl53l0x_I2C_SendData(slave_address, 0x00, 0x01);   //
+	vl53l0x_I2C_SendData(slave_address, 0x0B, 0x01);   //
+	vl53l0x_I2C_SendData(slave_address, 0x00, 0x00);   //
+	vl53l0x_I2C_SendData(slave_address, 0x01, 0xE8);   //
 }
 
 
 /*
  * Setup VL5310X with initial values
  */
-void vl5310x_Initialisation(uint8_t slave_address) {
+void vl5310x_Initialisation(uint8_t slave_address) { 
     
     vl53l0x_I2C_SendData(slave_address, 0x89, 0x01);   //VHV_CONFIG_PAD_SCL_SDA__EXTSUP_HV
+    vl53l0x_I2C_SendData(slave_address, 0x88, 0x00);   //UNKNOWN
 	vl53l0x_I2C_SendData(slave_address, 0x80, 0x01);   //POWER_MANAGEMENT_GO1_POWER_FORCE
 	vl53l0x_I2C_SendData(slave_address, 0xFF, 0x01);   //UNKNOWN
 	vl53l0x_I2C_SendData(slave_address, 0x00, 0x00);   //SYSRANGE_START
-	vl53l0x_I2C_ReceiveData(slave_address, 0x09);   //SYSTEM_RANGE_CONFIG 1
 	vl53l0x_I2C_SendData(slave_address, 0x00, 0x01);   //SYSRANGE_START
 	vl53l0x_I2C_SendData(slave_address, 0xFF, 0x00);   //UNKNOWN
 	vl53l0x_I2C_SendData(slave_address, 0x80, 0x00);   //POWER_MANAGEMENT_GO1_POWER_FORCE
-	vl53l0x_I2C_ReceiveData(slave_address, 0x60);   //MSRC_CONFIG_CONTROL
 	vl53l0x_I2C_SendData(slave_address, 0x60, 0x12);   //MSRC_CONFIG_CONTROL
-	//Write 16bit: 0x20, 0x44);   //FINAL_RANGE_CONFIG_MIN_COUNT_RATE_RTN_LIMIT
+    vl53l0x_I2C_SendData(slave_address, 0x44, 0x00);   //FINAL_RANGE_CONFIG_MIN_COUNT_RATE_RTN_LIMIT
+    vl53l0x_I2C_SendData(slave_address, 0x45, 0x20);
 	vl53l0x_I2C_SendData(slave_address, 0x01, 0xFF);   //SYSTEM_SEQUENCE_CONFIG
 	vl53l0x_I2C_SendData(slave_address, 0x80, 0x01);   //POWER_MANAGEMENT_GO1_POWER_FORCE
 	vl53l0x_I2C_SendData(slave_address, 0xFF, 0x01);   //UNKNOWN
 	vl53l0x_I2C_SendData(slave_address, 0x00, 0x00);   //SYSRANGE_START
 	vl53l0x_I2C_SendData(slave_address, 0xFF, 0x06);   //UNKNOWN
-	vl53l0x_I2C_ReceiveData(slave_address, 0x83);   //UNKNOWN
-	vl53l0x_I2C_SendData(slave_address, 0x83, 0x04);   //UNKNOWN
+	vl53l0x_I2C_SendData(slave_address, 0x83, 0x05);   //UNKNOWN
 	vl53l0x_I2C_SendData(slave_address, 0xFF, 0x07);   //UNKNOWN
 	vl53l0x_I2C_SendData(slave_address, 0x81, 0x01);   //SYSTEM_HISTOGRAM_BIN
 	vl53l0x_I2C_SendData(slave_address, 0x80, 0x01);   //POWER_MANAGEMENT_GO1_POWER_FORCE
-	vl53l0x_I2C_SendData(slave_address, 0x09, 0x6B);   //SYSTEM_RANGE_CONFIG 4
+	vl53l0x_I2C_SendData(slave_address, 0x94, 0x6B);   //SYSTEM_RANGE_CONFIG 4
 	vl53l0x_I2C_SendData(slave_address, 0x83, 0x00);   //UNKNOWN
-	//While loop to ensure that register 0x83 is not equal to... line 247
-	vl53l0x_I2C_SendData(slave_address, 0x83, 0x1);   //UNKNOWN
-	vl53l0x_I2C_ReceiveData(slave_address, 0x09);   //SYSTEM_RANGE_CONFIG 2
+	vl53l0x_I2C_SendData(slave_address, 0x83, 0x01);   //UNKNOWN
 	vl53l0x_I2C_SendData(slave_address, 0x81, 0x00);   //SYSTEM_HISTOGRAM_BIN
 	vl53l0x_I2C_SendData(slave_address, 0xFF, 0x06);   //UNKNOWN
-	vl53l0x_I2C_ReceiveData(slave_address, 0x83);   //UNKNOWN
-	vl53l0x_I2C_SendData(slave_address, 0x83, 0x00);   //UNKNOWN
+	vl53l0x_I2C_SendData(slave_address, 0x83, 0x01);   //UNKNOWN
 	vl53l0x_I2C_SendData(slave_address, 0xFF, 0x01);   //UNKNOWN
 	vl53l0x_I2C_SendData(slave_address, 0x00, 0x01);   //SYSRANGE_START
 	vl53l0x_I2C_SendData(slave_address, 0xFF, 0x00);   //UNKNOWN
 	vl53l0x_I2C_SendData(slave_address, 0x80, 0x00);   //POWER_MANAGEMENT_GO1_POWER_FORCE
-//	vl53l0x_I2C_ReceiveData(slave_address, 0xB0);   //GLOBAL_CONFIG_SPAD_ENABLES_REF_0
-//	vl53l0x_I2C_ReceiveData(slave_address, 0xB1);   //GLOBAL_CONFIG_SPAD_ENABLES_REF_1
-//	vl53l0x_I2C_ReceiveData(slave_address, 0xB2);   //GLOBAL_CONFIG_SPAD_ENABLES_REF_2
-//	vl53l0x_I2C_ReceiveData(slave_address, 0xB3);   //GLOBAL_CONFIG_SPAD_ENABLES_REF_3
-//	vl53l0x_I2C_ReceiveData(slave_address, 0xB4);   //GLOBAL_CONFIG_SPAD_ENABLES_REF_4
-//	vl53l0x_I2C_ReceiveData(slave_address, 0xB5);   //GLOBAL_CONFIG_SPAD_ENABLES_REF_5
-//	vl53l0x_I2C_SendData(slave_address, 0xFF, 0x01);   //UNKNOWN
-//	vl53l0x_I2C_SendData(slave_address, 0x4F, 0x00);   //DYNAMIC_SPAD_REF_EN_START_OFFSET
-//	vl53l0x_I2C_SendData(slave_address, 0x4E, 0x2C);   //DYNAMIC_SPAD_NUM_REQUESTED_REF_SPAD
-//	vl53l0x_I2C_SendData(slave_address, 0xFF, 0x00);   //UNKNOWN
-//	vl53l0x_I2C_SendData(slave_address, 0xB6, 0xB4);   //GLOBAL_CONFIG_REF_EN_START_SELECT
-//	vl53l0x_I2C_SendData(slave_address, 0xB0, 0x00);   //RESULT_PEAK_SIGNAL_RATE_REF_0
-//	vl53l0x_I2C_SendData(slave_address, 0xB1, 0x00);   //RESULT_PEAK_SIGNAL_RATE_REF_1
-//	vl53l0x_I2C_SendData(slave_address, 0xB2, 0x00);   //RESULT_PEAK_SIGNAL_RATE_REF_2
-//	vl53l0x_I2C_SendData(slave_address, 0xB3, 0x00);   //RESULT_PEAK_SIGNAL_RATE_REF_3
-//	vl53l0x_I2C_SendData(slave_address, 0xB4, 0x00);   //RESULT_PEAK_SIGNAL_RATE_REF_4
-//	vl53l0x_I2C_SendData(slave_address, 0xB5, 0x00);   //RESULT_PEAK_SIGNAL_RATE_REF_5
+	vl53l0x_I2C_SendData(slave_address, 0xFF, 0x01);   //UNKNOWN
+	vl53l0x_I2C_SendData(slave_address, 0x4F, 0x00);   //DYNAMIC_SPAD_REF_EN_START_OFFSET
+	vl53l0x_I2C_SendData(slave_address, 0x4E, 0x2C);   //DYNAMIC_SPAD_NUM_REQUESTED_REF_SPAD
+	vl53l0x_I2C_SendData(slave_address, 0xFF, 0x00);   //UNKNOWN
+	vl53l0x_I2C_SendData(slave_address, 0xB6, 0xB4);   //GLOBAL_CONFIG_REF_EN_START_SELECT
+	vl53l0x_I2C_SendData(slave_address, 0xB0, 0x00);   //RESULT_PEAK_SIGNAL_RATE_REF_0
+	vl53l0x_I2C_SendData(slave_address, 0xB1, 0xF0);   //RESULT_PEAK_SIGNAL_RATE_REF_1
+	vl53l0x_I2C_SendData(slave_address, 0xB2, 0xFF);   //RESULT_PEAK_SIGNAL_RATE_REF_2
+	vl53l0x_I2C_SendData(slave_address, 0xB3, 0x1E);   //RESULT_PEAK_SIGNAL_RATE_REF_3
+	vl53l0x_I2C_SendData(slave_address, 0xB4, 0x00);   //RESULT_PEAK_SIGNAL_RATE_REF_4
+	vl53l0x_I2C_SendData(slave_address, 0xB5, 0x00);   //RESULT_PEAK_SIGNAL_RATE_REF_5
     
     
     vl5310x_Tuning(slave_address);
     
     
     vl53l0x_I2C_SendData(slave_address, 0x0A, 0x04);   //SYSTEM_INTERRUPT_CONFIG_GPIO
-	vl53l0x_I2C_ReceiveData(slave_address, 0x84);   //GPIO_HV_MUX_ACTIVE_HIGH
-	vl53l0x_I2C_SendData(slave_address, 0x84, 0x00);   //GPIO_HV_MUX_ACTIVE_HIGH
+	vl53l0x_I2C_SendData(slave_address, 0x84, 0x01);   //GPIO_HV_MUX_ACTIVE_HIGH
 	vl53l0x_I2C_SendData(slave_address, 0x0B, 0x01);   //SYSTEM_INTERRUPT_CLEAR
-	vl53l0x_I2C_ReceiveData(slave_address, 0x01);   //SYSTEM_SEQUENCE_CONFIG
-	vl53l0x_I2C_ReceiveData(slave_address, 0x50);   //PRE_RANGE_CONFIG_VCSEL_PERIOD
-	vl53l0x_I2C_ReceiveData(slave_address, 0x46);   //MSRC_CONFIG_TIMEOUT_MACROP
-	vl53l0x_I2C_ReceiveData(slave_address, 0x51);   //PRE_RANGE_CONFIG_TIMEOUT_MACROP_HI
-	vl53l0x_I2C_ReceiveData(slave_address, 0x52);   //PRE_RANGE_CONFIG_TIMEOUT_MACROP_LO
-	vl53l0x_I2C_ReceiveData(slave_address, 0x70);   //FINAL_RANGE_CONFIG_VCSEL_PERIOD
-	vl53l0x_I2C_ReceiveData(slave_address, 0x71);   //FINAL_RANGE_CONFIG_TIMEOUT_MACROP_HI
-	vl53l0x_I2C_ReceiveData(slave_address, 0x72);   //FINAL_RANGE_CONFIG_TIMEOUT_MACROP_LO
 	vl53l0x_I2C_SendData(slave_address, 0x01, 0xE8);   //SYSTEM_SEQUENCE_CONFIG
+	vl53l0x_I2C_SendData(slave_address, 0x71, 0x02);   //
+	vl53l0x_I2C_SendData(slave_address, 0x72, 0x94);   //
 	vl53l0x_I2C_SendData(slave_address, 0x01, 0x01);   //SYSTEM_SEQUENCE_CONFIG
 	vl53l0x_I2C_SendData(slave_address, 0x00, 0x41);   //SYSRANGE_START
-	//While loop to ensure... line 713
+    
+    while ((vl53l0x_I2C_ReceiveData(slave_address, 0x13) & 0x07) == 0) {   //INTERRUPT_STATUS
+    }
+    
 	vl53l0x_I2C_SendData(slave_address, 0x0B, 0x01);   //SYSTEM_INTERRUPT_CLEAR
 	vl53l0x_I2C_SendData(slave_address, 0x00, 0x00);   //SYSRANGE_START
 	vl53l0x_I2C_SendData(slave_address, 0x01, 0x02);   //SYSTEM_SEQUENCE_CONFIG
 	vl53l0x_I2C_SendData(slave_address, 0x00, 0x01);   //SYSRANGE_START
-	//While loop to ensure... line 713
+    
+    while ((vl53l0x_I2C_ReceiveData(slave_address, 0x13) & 0x07) == 0) {   //INTERRUPT_STATUS
+    }
+    
 	vl53l0x_I2C_SendData(slave_address, 0x0B, 0x01);   //SYSTEM_INTERRUPT_CLEAR
 	vl53l0x_I2C_SendData(slave_address, 0x00, 0x00);   //SYSRANGE_START
-	vl53l0x_I2C_SendData(slave_address, 0x01, 0xE8);   //SYSTEM_SEQUENCE_CONFIG
+	vl53l0x_I2C_SendData(slave_address, 0x01, 0xE8);   //SYSTEM_SEQUENCE_CONFIG  
+    
+	vl53l0x_I2C_SendData(slave_address, 0x71, 0x05);   // 
+	vl53l0x_I2C_SendData(slave_address, 0x72, 0x9A);   //  
 }
 
 
@@ -217,32 +242,25 @@ void vl5310x_Tuning(uint8_t slave_address) {
 
 
 /*
- * Setup VL5310X to use specified timing budget (min 20000, max 200000) ~ affects accuracy
+ * Read range from VL5310X
  */
-void vl5310x_SetMeasurementTimingBudget(uint8_t slave_address, uint32_t targetTiming) {
-	vl53l0x_I2C_ReceiveData(slave_address, 0x01);   //SYSTEM_SEQUENCE_CONFIG
-	vl53l0x_I2C_ReceiveData(slave_address, 0x50);   //PRE_RANGE_CONFIG_VCSEL_PERIOD
-	vl53l0x_I2C_ReceiveData(slave_address, 0x46);   //MSRC_CONFIG_TIMEOUT_MACROP
-	vl53l0x_I2C_ReceiveData(slave_address, 0x51);   //PRE_RANGE_CONFIG_TIMEOUT_MACROP_HI	
-	vl53l0x_I2C_ReceiveData(slave_address, 0x52);   //PRE_RANGE_CONFIG_TIMEOUT_MACROP_LO
-	vl53l0x_I2C_ReceiveData(slave_address, 0x70);   //FINAL_RANGE_CONFIG_VCSEL_PERIOD
-	vl53l0x_I2C_ReceiveData(slave_address, 0x71);   //FINAL_RANGE_CONFIG_TIMEOUT_MACROP_HI
-	vl53l0x_I2C_ReceiveData(slave_address, 0x72);   //FINAL_RANGE_CONFIG_TIMEOUT_MACROP_LO
+uint16_t vl5310x_ReadRange(uint8_t slave_address) {
+	vl53l0x_I2C_SendData(slave_address, 0x80, 0x01);   //
+	vl53l0x_I2C_SendData(slave_address, 0xFF, 0x01);   //
+	vl53l0x_I2C_SendData(slave_address, 0x00, 0x00);   //
+	vl53l0x_I2C_SendData(slave_address, 0x91, 0x3C);   //
+	vl53l0x_I2C_SendData(slave_address, 0x00, 0x01);   //
+	vl53l0x_I2C_SendData(slave_address, 0xFF, 0x00);   //
+	vl53l0x_I2C_SendData(slave_address, 0x80, 0x00);   //
+	vl53l0x_I2C_SendData(slave_address, 0x00, 0x01);   //
     
-    //REST OF ALGORITHM
-}
-
-
-/*
- * Setup VL5310X to be in continuous reading mode
- */
-void vl5310x_SetContinuousReading(uint8_t slave_address) {
-	vl53l0x_I2C_SendData(slave_address, 0x80, 0x01);   //POWER_MANAGEMENT_GO1_POWER_FORCE
-	vl53l0x_I2C_SendData(slave_address, 0xFF, 0x01);   //UNKNOWN
-	vl53l0x_I2C_SendData(slave_address, 0x00, 0x00);   //SYSRANGE_START
-	vl53l0x_I2C_SendData(slave_address, 0x09, 0x00);   //SYSTEM_RANGE_CONFIG 1
-	vl53l0x_I2C_SendData(slave_address, 0x00, 0x01);   //SYSRANGE_START
-	vl53l0x_I2C_SendData(slave_address, 0xFF, 0x00);   //UNKNOWN
-	vl53l0x_I2C_SendData(slave_address, 0x80, 0x00);   //POWER_MANAGEMENT_GO1_POWER_FORCE
-	vl53l0x_I2C_SendData(slave_address, 0x00, 0x02);   //SYSRANGE_START
+    while ((vl53l0x_I2C_ReceiveData(slave_address, 0x13) & 0x07) == 0) {   //INTERRUPT_STATUS
+    }
+    
+    uint8_t valueHI = vl53l0x_I2C_ReceiveData(slave_address, 0x1E);   //
+    uint8_t valueLO = vl53l0x_I2C_ReceiveData(slave_address, 0x1F);   //
+    
+	vl53l0x_I2C_SendData(slave_address, 0x0B, 0x01);   //
+    
+    return (valueHI << 8) + valueLO;
 }

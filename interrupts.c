@@ -96,9 +96,7 @@ void __interrupt() interrupts_Event(void) {
         //TMR0 Overflow Interrupt 
         
         //<TEST CODE>
-        unsigned char slave_address = 0x52;     //This is correctly shifted so last bit can be read or wright (0x29)
-        unsigned char device_register = 0x14;   //This should be register with result 
-        unsigned char value = vl53l0x_I2C_ReceiveData(slave_address, device_register);
+        uint16_t value = vl5310x_ReadRange(0x52);
         
         if (value < 60) {
             PORTBbits.RB7 = 1;
@@ -106,19 +104,19 @@ void __interrupt() interrupts_Event(void) {
             PORTBbits.RB4 = 1;  
             PORTBbits.RB3 = 1;  
             PORTBbits.RB2 = 1;                
-        } else if (value < 70) {            
+        } else if (value < 100) {            
             PORTBbits.RB7 = 0;
             PORTBbits.RB6 = 1;
             PORTBbits.RB4 = 1;
             PORTBbits.RB3 = 1;  
             PORTBbits.RB2 = 1;   
-        } else if (value < 80) {            
+        } else if (value < 140) {            
             PORTBbits.RB7 = 0;
             PORTBbits.RB6 = 0;
             PORTBbits.RB4 = 1;
             PORTBbits.RB3 = 1;  
             PORTBbits.RB2 = 1;   
-        } else if (value < 90) {            
+        } else if (value < 180) {            
             PORTBbits.RB7 = 0;
             PORTBbits.RB6 = 0;
             PORTBbits.RB4 = 0;
