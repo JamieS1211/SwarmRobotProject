@@ -98,37 +98,20 @@ void __interrupt() interrupts_Event(void) {
         //<TEST CODE>
         uint16_t value = vl5310x_ReadRange(0x52);
         
-        if (value < 60) {
-            PORTBbits.RB7 = 1;
-            PORTBbits.RB6 = 1;
-            PORTBbits.RB4 = 1;  
-            PORTBbits.RB3 = 1;  
-            PORTBbits.RB2 = 1;                
-        } else if (value < 100) {            
-            PORTBbits.RB7 = 0;
-            PORTBbits.RB6 = 1;
-            PORTBbits.RB4 = 1;
-            PORTBbits.RB3 = 1;  
-            PORTBbits.RB2 = 1;   
-        } else if (value < 140) {            
-            PORTBbits.RB7 = 0;
-            PORTBbits.RB6 = 0;
-            PORTBbits.RB4 = 1;
-            PORTBbits.RB3 = 1;  
-            PORTBbits.RB2 = 1;   
-        } else if (value < 180) {            
-            PORTBbits.RB7 = 0;
-            PORTBbits.RB6 = 0;
-            PORTBbits.RB4 = 0;
-            PORTBbits.RB3 = 1;  
-            PORTBbits.RB2 = 1;   
-        } else {            
-            PORTBbits.RB7 = 0;
-            PORTBbits.RB6 = 0;
-            PORTBbits.RB4 = 0;
-            PORTBbits.RB3 = 0;  
-            PORTBbits.RB2 = 1;   
+        if (value > 250) {
+            PORTBbits.RB7 = 1; // Enable
+            PORTBbits.RB6 = 0; // Blue left - backwards
+            PORTBbits.RB4 = 1; // Yellow left - forwards
+            PORTBbits.RB3 = 0; // Orange left - backwards  
+            PORTBbits.RB2 = 1; // Purple left - forwards
+        } else {
+            PORTBbits.RB7 = 0; // Enable
+            PORTBbits.RB6 = 0; // Blue left - backwards
+            PORTBbits.RB4 = 0; // Yellow left - forwards
+            PORTBbits.RB3 = 0; // Orange left - backwards  
+            PORTBbits.RB2 = 0; // Purple left - forwards
         }
+                
         //</TEST CODE/>
         
         INTCONbits.TMR0IF = 0;

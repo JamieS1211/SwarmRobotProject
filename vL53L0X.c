@@ -89,7 +89,7 @@ void vl5310x_Initialisation(uint8_t slave_address) {
 	vl53l0x_I2C_SendData(slave_address, 0x80, 0x00);   //POWER_MANAGEMENT_GO1_POWER_FORCE
 	vl53l0x_I2C_SendData(slave_address, 0x60, 0x12);   //MSRC_CONFIG_CONTROL
     vl53l0x_I2C_SendData(slave_address, 0x44, 0x00);   //FINAL_RANGE_CONFIG_MIN_COUNT_RATE_RTN_LIMIT
-    vl53l0x_I2C_SendData(slave_address, 0x45, 0x20);
+    vl53l0x_I2C_SendData(slave_address, 0x45, 0x20);   //
 	vl53l0x_I2C_SendData(slave_address, 0x01, 0xFF);   //SYSTEM_SEQUENCE_CONFIG
 	vl53l0x_I2C_SendData(slave_address, 0x80, 0x01);   //POWER_MANAGEMENT_GO1_POWER_FORCE
 	vl53l0x_I2C_SendData(slave_address, 0xFF, 0x01);   //UNKNOWN
