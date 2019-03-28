@@ -34,7 +34,7 @@
 #pragma config LPT1OSC = OFF        //Low-Power Timer 1 Oscillator Enable bit
 #pragma config MCLRE = OFF          //MCLR Pin Enable bit
 #pragma config STVREN = ON          //Stack Full/Underflow Reset Enable bit
-#pragma config LVP = ON             //Single-Supply ICSP Enable bit
+#pragma config LVP = OFF            //Single-Supply ICSP Enable bit
 #pragma config XINST = OFF          //Extended Instruction Set Enable bit
 #pragma config CP0 = OFF            //Code Protection bit
 #pragma config CP1 = OFF            //Code Protection bit
@@ -95,20 +95,21 @@ void main(void) {
     interrupts_Setup();
     
     //Setup timer 0 (linked to interrupt)
-    //Settings trigger interrupt approx. every 0.25 seconds
+    //Settings trigger interrupt approx. every 0.06 seconds
     T0CONbits.TMR0ON = 1;
     T0CONbits.T08BIT = 1;
     T0CONbits.T0CS = 0;
     T0CONbits.T0SE = 0;
     T0CONbits.PSA = 0;
     T0CONbits.T0PS2 = 1;
-    T0CONbits.T0PS1 = 1;
+    T0CONbits.T0PS1 = 0;
     T0CONbits.T0PS0 = 1;
     
     //<TEST CODE>
     //Set TRISB 7 to outputs (output result of TOF sensor)
     TRISBbits.TRISB7 = 0;
     TRISBbits.TRISB6 = 0;
+    TRISBbits.TRISB5 = 0;
     TRISBbits.TRISB4 = 0;
     TRISBbits.TRISB3 = 0;
     TRISBbits.TRISB2 = 0;

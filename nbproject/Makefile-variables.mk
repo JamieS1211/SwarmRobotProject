@@ -6,8 +6,8 @@
 CND_BASEDIR=`pwd`
 # default configuration
 CND_ARTIFACT_DIR_default=dist/default/production
-CND_ARTIFACT_NAME_default=SwarmRobotProject.X.production.hex
-CND_ARTIFACT_PATH_default=dist/default/production/SwarmRobotProject.X.production.hex
+CND_ARTIFACT_NAME_default=SwarmRobotProject.production.hex
+CND_ARTIFACT_PATH_default=dist/default/production/SwarmRobotProject.production.hex
 CND_PACKAGE_DIR_default=${CND_DISTDIR}/default/package
-CND_PACKAGE_NAME_default=swarmrobotproject.x.tar
-CND_PACKAGE_PATH_default=${CND_DISTDIR}/default/package/swarmrobotproject.x.tar
+CND_PACKAGE_NAME_default=swarmrobotproject.tar
+CND_PACKAGE_PATH_default=${CND_DISTDIR}/default/package/swarmrobotproject.tar
