@@ -105,15 +105,13 @@ void main(void) {
     T0CONbits.T0PS1 = 0;
     T0CONbits.T0PS0 = 1;
     
-    //<TEST CODE>
-    //Set TRISB 7 to outputs (output result of TOF sensor)
+    //Set TRISB 7-2 to outputs to drive motors
     TRISBbits.TRISB7 = 0;
     TRISBbits.TRISB6 = 0;
     TRISBbits.TRISB5 = 0;
     TRISBbits.TRISB4 = 0;
     TRISBbits.TRISB3 = 0;
     TRISBbits.TRISB2 = 0;
-    //</TEST CODE>
         
     while(1);
     

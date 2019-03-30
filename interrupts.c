@@ -8,6 +8,7 @@
 
 #include <xc.h>
 
+#include "globals.h"
 #include "interrupts.h"
 #include "i2C.h"
 #include "vL53L0X.h"
@@ -95,33 +96,43 @@ void __interrupt() interrupts_Event(void) {
     if (INTCONbits.TMR0IE && INTCONbits.TMR0IF == 1) {
         //TMR0 Overflow Interrupt 
         
-        //<TEST CODE>
         uint16_t value = vl5310x_ReadRange(0x52);
         
         if (value > 350) { //Go straight
             PORTBbits.RB7 = 1; // Enable left
-            PORTBbits.RB6 = 0; // left backwards
-            PORTBbits.RB5 = 1; // left forwards
-            PORTBbits.RB4 = 0; // right backwards
-            PORTBbits.RB3 = 1; // right forwards
+            PORTBbits.RB6 = 1; // left forwards
+            PORTBbits.RB5 = 0; // left backwards
+            PORTBbits.RB4 = 1; // right forwards
+            PORTBbits.RB3 = 0; // right backwards
             PORTBbits.RB2 = 1; // Enable right
-        } else if ( value > 100) { //Curve
-            PORTBbits.RB7 = 1; // Enable left
-            PORTBbits.RB6 = 0; // left backwards
-            PORTBbits.RB5 = 1; // left forwards
-            PORTBbits.RB4 = 0; // right backwards
-            PORTBbits.RB3 = 0; // right forwards
-            PORTBbits.RB2 = 0; // Enable right
-        } else { //Turn sharp
-            PORTBbits.RB7 = 1; // Enable left
-            PORTBbits.RB6 = 0; // left backwards
-            PORTBbits.RB5 = 1; // left forwards
-            PORTBbits.RB4 = 1; // right backwards
-            PORTBbits.RB3 = 0; // right forwards
-            PORTBbits.RB2 = 1; // Enable right
+        } else {
+            
+            if (directionChangeCounter == 0) {
+                directionChangeCounter = 10;
+                direction = value% 2;
+            }
+            
+            directionChangeCounter--;
+            
+            uint16_t turnLeft = direction;
+            
+            if ( value > 100) { //Curve
+                PORTBbits.RB7 = turnLeft; // Enable left
+                PORTBbits.RB6 = 1; // left forwards
+                PORTBbits.RB5 = 0; // left backwards
+                PORTBbits.RB4 = 1; // right backwards
+                PORTBbits.RB3 = 0; // right forwards
+                PORTBbits.RB2 = !turnLeft; // Enable right
+            } else { //Turn sharp
+                PORTBbits.RB7 = 1; // Enable left
+                PORTBbits.RB6 = turnLeft; // left forwards
+                PORTBbits.RB5 = !turnLeft; // left backwards
+                PORTBbits.RB4 = !turnLeft; // right forwards
+                PORTBbits.RB3 = turnLeft; // right backwards
+                PORTBbits.RB2 = 1; // Enable right
+            }
         }
                 
-        //</TEST CODE/>
         
         INTCONbits.TMR0IF = 0;
     } else if(INTCONbits.INT0IE && INTCONbits.INT0IF == 1) {
