@@ -109,7 +109,7 @@ void __interrupt() interrupts_Event(void) {
             
             if (directionChangeCounter == 0) {
                 directionChangeCounter = 10;
-                direction = value% 2;
+                direction = value % 2;
             }
             
             directionChangeCounter--;
