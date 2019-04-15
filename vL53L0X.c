@@ -5,6 +5,7 @@
  * Created on 01 December 2018, 19:57
  */
 
+#include "globals.h"
 #include "vL53L0X.h"
 #include "i2C.h"
 
@@ -90,8 +91,8 @@ void vl5310x_Setup(uint8_t slave_address) {
 	vl53l0x_I2C_SendData(slave_address, PRE_RANGE_CONFIG_VALID_PHASE_HIGH, 0x50);
 	vl53l0x_I2C_SendData(slave_address, PRE_RANGE_CONFIG_VALID_PHASE_LOW , 0x08);
 	vl53l0x_I2C_SendData(slave_address, PRE_RANGE_CONFIG_VCSEL_PERIOD, 0x08);
-	vl53l0x_I2C_SendData(slave_address, 0x51, 0x00);   //UNKNOWN
-	vl53l0x_I2C_SendData(slave_address, 0x52, 0x75);   //UNKNOWN
+	vl53l0x_I2C_SendData(slave_address, PRE_RANGE_CONFIG_TIMEOUT_MACROP_HI, 0x00);   //UNKNOWN
+	vl53l0x_I2C_SendData(slave_address, PRE_RANGE_CONFIG_TIMEOUT_MACROP_LO, 0x75);   //UNKNOWN
 	vl53l0x_I2C_SendData(slave_address, MSRC_CONFIG_TIMEOUT_MACROP, 0x1D);
 	vl53l0x_I2C_SendData(slave_address, FINAL_RANGE_CONFIG_TIMEOUT_MACROP_HI, 0x02);
 	vl53l0x_I2C_SendData(slave_address, FINAL_RANGE_CONFIG_TIMEOUT_MACROP_LO, 0x8B);
@@ -276,7 +277,7 @@ void vl5310x_Tuning(uint8_t slave_address) {
 	vl53l0x_I2C_SendData(slave_address, 0xFF, 0x01);   //UNKNOWN
 	vl53l0x_I2C_SendData(slave_address, 0x0D, 0x01);   //UNKNOWN
 	vl53l0x_I2C_SendData(slave_address, 0xFF, 0x00);   //UNKNOWN
-	vl53l0x_I2C_SendData(slave_address, POWER_MANAGEMENT_GO1_POWER_FORCE, 0x01)
+	vl53l0x_I2C_SendData(slave_address, POWER_MANAGEMENT_GO1_POWER_FORCE, 0x01);
 	vl53l0x_I2C_SendData(slave_address, SYSTEM_SEQUENCE_CONFIG, 0xF8);
 	vl53l0x_I2C_SendData(slave_address, 0xFF, 0x01);   //UNKNOWN
 	vl53l0x_I2C_SendData(slave_address, 0x8E, 0x01);   //UNKNOWN

@@ -8,9 +8,6 @@
 #ifndef VL53L0X_H
 #define VL53L0X_H
 
-#include <stdint.h>
-#include <stdbool.h>
-
 // Data sheet not found
 
 /*

@@ -13,6 +13,7 @@
 
 #include <xc.h>
 
+#include "globals.h"
 #include "interrupts.h"
 #include "i2C.h"
 #include "vL53L0X.h"

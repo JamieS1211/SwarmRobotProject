@@ -8,6 +8,9 @@
 #ifndef GLOBALS_H
 #define GLOBALS_H
 
+#include <stdint.h>
+#include <stdbool.h>
+
 volatile unsigned int direction = 0;
 volatile unsigned int directionChangeCounter = 0;
 

@@ -8,6 +8,7 @@
 
 #include <xc.h>
 
+#include "globals.h"
 #include "i2C.h"
 
 //Pages 204 - 236 in data sheet
@@ -76,7 +77,7 @@ void i2C_Setup(void) {
  * Waits if the I2C module is busy
  */
 void i2C_Wait(void) {
-    while(SSPSTATbits.RW == 1 || SSPCON2bits.RCEN == 1 || SSPCON2bits.PEN == 1 cS r|| SSPCON2bits.RSEN == 1 || SSPCON2bits.SEN == 1 );
+    while(SSPSTATbits.RW == 1 || SSPCON2bits.RCEN == 1 || SSPCON2bits.PEN == 1 || SSPCON2bits.RSEN == 1 || SSPCON2bits.SEN == 1 );
 }
 
 
@@ -122,7 +123,7 @@ void i2C_Stop(void) {
  * NOTE: i2C_address must be given as bits 7:1 Address, last bit as 0
  * This is so the last bit can be altered to give read or wright
  */
-void i2C_SendData(unsigned char i2C_address, unsigned char bytes[], unsigned char numberOfBytes) {
+void i2C_SendData(uint8_t i2C_address, uint8_t bytes[], uint8_t numberOfBytes) {
     i2C_Start();
     
     SSPBUF = i2C_address;               //Load byte into buffer (Sent automatically)
@@ -135,7 +136,7 @@ void i2C_SendData(unsigned char i2C_address, unsigned char bytes[], unsigned cha
         return;
     }
     
-    for (unsigned char i = 0; i < numberOfBytes; i++) {
+    for (uint8_t i = 0; i < numberOfBytes; i++) {
         SSPBUF = bytes[i];              //Load byte into buffer (Sent automatically)
                 
         while(PIR1bits.SSPIF == 0);     //This is set after 9th clock
@@ -156,7 +157,7 @@ void i2C_SendData(unsigned char i2C_address, unsigned char bytes[], unsigned cha
  * NOTE: i2C_address must be given as bits 7:1 Address, last bit as 0
  * This is so the last bit can be altered to give read or wright
  */
-void i2C_ReceiveData(unsigned char i2C_address, unsigned char sendBytes[], unsigned char numberOfSendBytes, unsigned char secondStartType, unsigned char *recievedBytesPointer, unsigned char numberOfReceivedBytes) {
+void i2C_ReceiveData(uint8_t i2C_address, uint8_t sendBytes[], uint8_t numberOfSendBytes, uint8_t secondStartType, uint8_t *recievedBytesPointer, uint8_t numberOfReceivedBytes) {
     i2C_Start();
     
     
@@ -173,7 +174,7 @@ void i2C_ReceiveData(unsigned char i2C_address, unsigned char sendBytes[], unsig
     
     
     // Send required data over I2C to request data
-    for (unsigned char i = 0; i < numberOfSendBytes; i++) {
+    for (uint8_t i = 0; i < numberOfSendBytes; i++) {
         SSPBUF = sendBytes[i];              //Load byte into buffer (Sent automatically)
                 
         while(PIR1bits.SSPIF == 0);     //This is set after 9th clock
@@ -206,7 +207,7 @@ void i2C_ReceiveData(unsigned char i2C_address, unsigned char sendBytes[], unsig
     
     
     // Save received bytes
-    for (unsigned char i = 0; i < numberOfReceivedBytes; i++) {
+    for (uint8_t i = 0; i < numberOfReceivedBytes; i++) {
         SSPCON2bits.RCEN = 1;           //Receive byte from slave
         
         while (SSPSTATbits.BF == 0);    //Wait for all bits to be received
