@@ -49,7 +49,7 @@ void i2C_Setup(void) {
     SSPCON1bits.WCOL = 0;   //Write Collision Detect bit
     SSPCON1bits.SSPOV = 0;  //Receive Overflow Indicator bit
     SSPCON1bits.SSPEN = 1;  //Master Synchronous Serial Port Enable bit 
-    SSPCON1bits.CKP = 1;    //SCK Release Control bit (Stretching pulse)
+    SSPCON1bits.CKP = 0;    //SCK Release Control bit (Stretching pulse)
     SSPCON1bits.SSPM3 = 1;  //Master Synchronous Serial Port Mode Select bits
     SSPCON1bits.SSPM2 = 0;
     SSPCON1bits.SSPM1 = 0;
@@ -66,7 +66,7 @@ void i2C_Setup(void) {
     SSPCON2bits.RSEN = 0;   //Repeated Start Condition Enable bit
     SSPCON2bits.SEN = 0;    //Start Condition Enable/Stretch Enable bit
     
-    //clock = FOSC/(4 * (SSPADD + 1)) - 2MHz/(SSPADD + 1)
+    //clock = FOSC/(4 * (SSPADD + 1)) -> 2MHz/(SSPADD + 1)
     SSPADD = 0x27; // 100KHz - page 223 - 39
 }
 
@@ -76,9 +76,7 @@ void i2C_Setup(void) {
  * Waits if the I2C module is busy
  */
 void i2C_Wait(void) {
-    while(SSPSTATbits.RW == 1 || SSPCON2bits.RCEN == 1 || SSPCON2bits.PEN == 1
-            || SSPCON2bits.RSEN == 1 || SSPCON2bits.SEN == 1 ) {
-    }
+    while(SSPSTATbits.RW == 1 || SSPCON2bits.RCEN == 1 || SSPCON2bits.PEN == 1 cS r|| SSPCON2bits.RSEN == 1 || SSPCON2bits.SEN == 1 );
 }
 
 
@@ -215,7 +213,7 @@ void i2C_ReceiveData(unsigned char i2C_address, unsigned char sendBytes[], unsig
         
         recievedBytesPointer[i] = SSPBUF;      //Save received byte
         
-        SSPCON2bits.ACKDT = 1;          //Prepare to send NACK
+        SSPCON2bits.ACKDT = 0;          //Prepare to send NACK
         SSPCON2bits.ACKEN = 1;          //Initiate NACK
         while (SSPCON2bits.ACKEN);      //Wait for NACK to be finished
     }
