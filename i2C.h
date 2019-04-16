@@ -8,6 +8,8 @@
 #ifndef I2C_H
 #define I2C_H
 
+#include "globals.h"
+
 //Second start type definitions
 #define RepeatedStart 0
 #define StopStart 1
@@ -56,7 +58,7 @@ void i2C_Stop(void);
  * NOTE: i2C_address must be given as bits 7:1 Address, last bit as 0
  * This is so the last bit can be altered to give read or wright
  */
-void i2C_SendData(unsigned char i2C_address, unsigned char bytes[], unsigned char numberOfBytes);
+void i2C_SendData(uint8_t i2C_address, uint8_t bytes[], uint8_t numberOfBytes);
 
 
 
@@ -65,7 +67,7 @@ void i2C_SendData(unsigned char i2C_address, unsigned char bytes[], unsigned cha
  * NOTE: i2C_address must be given as bits 7:1 Address, last bit as 0
  * This is so the last bit can be altered to give read or wright
  */
-void i2C_ReceiveData(unsigned char i2C_address, unsigned char sendBytes[], unsigned char numberOfSendBytes, unsigned char secondStartType, unsigned char *recievedBytesPointer, unsigned char numberOfReceivedBytes);
+void i2C_ReceiveData(uint8_t i2C_address, uint8_t sendBytes[], uint8_t numberOfSendBytes, uint8_t secondStartType, uint8_t *recievedBytesPointer, uint8_t numberOfReceivedBytes);
 
 
 

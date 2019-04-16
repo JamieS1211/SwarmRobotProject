@@ -8,7 +8,7 @@
 #ifndef VL53L0X_H
 #define VL53L0X_H
 
-// Data sheet not found
+#include "globals.h"
 
 /*
  * Send data to VL5310X using I2C

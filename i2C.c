@@ -214,7 +214,7 @@ void i2C_ReceiveData(uint8_t i2C_address, uint8_t sendBytes[], uint8_t numberOfS
         
         recievedBytesPointer[i] = SSPBUF;      //Save received byte
         
-        SSPCON2bits.ACKDT = 0;          //Prepare to send NACK
+        SSPCON2bits.ACKDT = 1;          //Prepare to send NACK
         SSPCON2bits.ACKEN = 1;          //Initiate NACK
         while (SSPCON2bits.ACKEN);      //Wait for NACK to be finished
     }
