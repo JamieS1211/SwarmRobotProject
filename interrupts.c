@@ -13,6 +13,8 @@
 #include "i2C.h"
 #include "vL53L0X.h"
 
+#include "sPI.h"
+
 // Interrupts - Pages 97 - 110 in data sheet
 
 /*
@@ -93,6 +95,8 @@ void __interrupt() interrupts_Event(void) {
 //__interrupt(low_priority)
 //__interrupt(high_priority)
     
+    sIP_ConfigWrite(0x19, 0xF6);
+    
     if (INTCONbits.TMR0IE && INTCONbits.TMR0IF == 1) {
         //TMR0 Overflow Interrupt 
         
@@ -110,9 +114,9 @@ void __interrupt() interrupts_Event(void) {
             if (directionChangeCounter == 0) {
                 directionChangeCounter = 10;
                 direction = value % 2;
+            } else {
+                directionChangeCounter--;
             }
-            
-            directionChangeCounter--;
             
             uint16_t turnLeft = direction;
             

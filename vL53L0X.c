@@ -180,16 +180,14 @@ void vl5310x_Initialisation(uint8_t slave_address) {
 	vl53l0x_I2C_SendData(slave_address, SYSTEM_SEQUENCE_CONFIG, 0x01);
 	vl53l0x_I2C_SendData(slave_address, SYSRANGE_START, 0x41);
     
-    while ((vl53l0x_I2C_ReceiveData(slave_address, INTERRUPT_STATUS) & 0x07) == 0) {
-    }
+    while ((vl53l0x_I2C_ReceiveData(slave_address, INTERRUPT_STATUS) & 0x07) == 0);
     
 	vl53l0x_I2C_SendData(slave_address, SYSTEM_INTERRUPT_CLEAR, 0x01);
 	vl53l0x_I2C_SendData(slave_address, SYSRANGE_START, 0x00);
 	vl53l0x_I2C_SendData(slave_address, SYSTEM_SEQUENCE_CONFIG, 0x02);
 	vl53l0x_I2C_SendData(slave_address, SYSRANGE_START, 0x01);
     
-    while ((vl53l0x_I2C_ReceiveData(slave_address, INTERRUPT_STATUS) & 0x07) == 0) {
-    }
+    while ((vl53l0x_I2C_ReceiveData(slave_address, INTERRUPT_STATUS) & 0x07) == 0);
     
 	vl53l0x_I2C_SendData(slave_address, SYSTEM_INTERRUPT_CLEAR, 0x01);
 	vl53l0x_I2C_SendData(slave_address, SYSRANGE_START, 0x00);
@@ -300,8 +298,7 @@ uint16_t vl5310x_ReadRange(uint8_t slave_address) {
 	vl53l0x_I2C_SendData(slave_address, POWER_MANAGEMENT_GO1_POWER_FORCE, 0x00);
 	vl53l0x_I2C_SendData(slave_address, SYSRANGE_START, 0x01);
     
-    while ((vl53l0x_I2C_ReceiveData(slave_address, INTERRUPT_STATUS) & 0x07) == 0) {
-    }
+    while ((vl53l0x_I2C_ReceiveData(slave_address, INTERRUPT_STATUS) & 0x07) == 0);
     
     uint8_t valueHI = vl53l0x_I2C_ReceiveData(slave_address, RANGE_RESULT_HI);
     uint8_t valueLO = vl53l0x_I2C_ReceiveData(slave_address, RANGE_RESULT_LO);

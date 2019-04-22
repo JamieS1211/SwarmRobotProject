@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=main.c interrupts.c i2C.c vL53L0X.c
+SOURCEFILES_QUOTED_IF_SPACED=main.c interrupts.c vL53L0X.c i2C.c sPI.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.p1 ${OBJECTDIR}/interrupts.p1 ${OBJECTDIR}/i2C.p1 ${OBJECTDIR}/vL53L0X.p1
-POSSIBLE_DEPFILES=${OBJECTDIR}/main.p1.d ${OBJECTDIR}/interrupts.p1.d ${OBJECTDIR}/i2C.p1.d ${OBJECTDIR}/vL53L0X.p1.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.p1 ${OBJECTDIR}/interrupts.p1 ${OBJECTDIR}/vL53L0X.p1 ${OBJECTDIR}/i2C.p1 ${OBJECTDIR}/sPI.p1
+POSSIBLE_DEPFILES=${OBJECTDIR}/main.p1.d ${OBJECTDIR}/interrupts.p1.d ${OBJECTDIR}/vL53L0X.p1.d ${OBJECTDIR}/i2C.p1.d ${OBJECTDIR}/sPI.p1.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/main.p1 ${OBJECTDIR}/interrupts.p1 ${OBJECTDIR}/i2C.p1 ${OBJECTDIR}/vL53L0X.p1
+OBJECTFILES=${OBJECTDIR}/main.p1 ${OBJECTDIR}/interrupts.p1 ${OBJECTDIR}/vL53L0X.p1 ${OBJECTDIR}/i2C.p1 ${OBJECTDIR}/sPI.p1
 
 # Source Files
-SOURCEFILES=main.c interrupts.c i2C.c vL53L0X.c
+SOURCEFILES=main.c interrupts.c vL53L0X.c i2C.c sPI.c
 
 
 CFLAGS=
@@ -109,6 +109,14 @@ ${OBJECTDIR}/interrupts.p1: interrupts.c  nbproject/Makefile-${CND_CONF}.mk
 	@-${MV} ${OBJECTDIR}/interrupts.d ${OBJECTDIR}/interrupts.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/interrupts.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
+${OBJECTDIR}/vL53L0X.p1: vL53L0X.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/vL53L0X.p1.d 
+	@${RM} ${OBJECTDIR}/vL53L0X.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/vL53L0X.p1 vL53L0X.c 
+	@-${MV} ${OBJECTDIR}/vL53L0X.d ${OBJECTDIR}/vL53L0X.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/vL53L0X.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
 ${OBJECTDIR}/i2C.p1: i2C.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/i2C.p1.d 
@@ -117,13 +125,13 @@ ${OBJECTDIR}/i2C.p1: i2C.c  nbproject/Makefile-${CND_CONF}.mk
 	@-${MV} ${OBJECTDIR}/i2C.d ${OBJECTDIR}/i2C.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/i2C.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/vL53L0X.p1: vL53L0X.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/sPI.p1: sPI.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/vL53L0X.p1.d 
-	@${RM} ${OBJECTDIR}/vL53L0X.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/vL53L0X.p1 vL53L0X.c 
-	@-${MV} ${OBJECTDIR}/vL53L0X.d ${OBJECTDIR}/vL53L0X.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/vL53L0X.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	@${RM} ${OBJECTDIR}/sPI.p1.d 
+	@${RM} ${OBJECTDIR}/sPI.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/sPI.p1 sPI.c 
+	@-${MV} ${OBJECTDIR}/sPI.d ${OBJECTDIR}/sPI.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/sPI.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 else
 ${OBJECTDIR}/main.p1: main.c  nbproject/Makefile-${CND_CONF}.mk
@@ -142,6 +150,14 @@ ${OBJECTDIR}/interrupts.p1: interrupts.c  nbproject/Makefile-${CND_CONF}.mk
 	@-${MV} ${OBJECTDIR}/interrupts.d ${OBJECTDIR}/interrupts.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/interrupts.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
+${OBJECTDIR}/vL53L0X.p1: vL53L0X.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/vL53L0X.p1.d 
+	@${RM} ${OBJECTDIR}/vL53L0X.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/vL53L0X.p1 vL53L0X.c 
+	@-${MV} ${OBJECTDIR}/vL53L0X.d ${OBJECTDIR}/vL53L0X.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/vL53L0X.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
 ${OBJECTDIR}/i2C.p1: i2C.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/i2C.p1.d 
@@ -150,13 +166,13 @@ ${OBJECTDIR}/i2C.p1: i2C.c  nbproject/Makefile-${CND_CONF}.mk
 	@-${MV} ${OBJECTDIR}/i2C.d ${OBJECTDIR}/i2C.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/i2C.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/vL53L0X.p1: vL53L0X.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/sPI.p1: sPI.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/vL53L0X.p1.d 
-	@${RM} ${OBJECTDIR}/vL53L0X.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/vL53L0X.p1 vL53L0X.c 
-	@-${MV} ${OBJECTDIR}/vL53L0X.d ${OBJECTDIR}/vL53L0X.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/vL53L0X.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	@${RM} ${OBJECTDIR}/sPI.p1.d 
+	@${RM} ${OBJECTDIR}/sPI.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/sPI.p1 sPI.c 
+	@-${MV} ${OBJECTDIR}/sPI.d ${OBJECTDIR}/sPI.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/sPI.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 endif
 

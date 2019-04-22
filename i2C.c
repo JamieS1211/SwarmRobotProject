@@ -19,8 +19,8 @@
  */
 void i2C_Setup(void) {     
     //Two pins are used for data transfer:
-    //Serial clock (SCL) ? RB1/AN10/INT1/SCK/SCL
-    //Serial data (SDA) ? RB0/AN12/INT0/FLT0/SDI/SDA
+    //Serial clock (SCL) - RB1/AN10/INT1/SCK/SCL
+    //Serial data (SDA) - RB0/AN12/INT0/FLT0/SDI/SDA
     //The user must configure these pins as inputs by setting
     //the associated TRIS bits.
     
@@ -43,6 +43,7 @@ void i2C_Setup(void) {
     //SSPSTATbits.STOP      //[READ ONLY] Stop bit
     //SSPSTATbits.START     //[READ ONLY] Start bit
     //SSPSTATbits.RW        //[READ ONLY] Read/Wright Information bit
+    //SSPSTATbits.UA        //[READ ONLY] Update Address bit
     //SSPSTATbits.BF        //[READ ONLY] Buffer Full Status bit
     
     
