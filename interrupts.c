@@ -103,12 +103,12 @@ void __interrupt() interrupts_Event(void) {
         uint16_t value = vl5310x_ReadRange(0x52);
         
         if (value > 350) { //Go straight
-            PORTBbits.RB7 = 1; // Enable left
-            PORTBbits.RB6 = 1; // left forwards
-            PORTBbits.RB5 = 0; // left backwards
-            PORTBbits.RB4 = 1; // right forwards
-            PORTBbits.RB3 = 0; // right backwards
-            PORTBbits.RB2 = 1; // Enable right
+            enableLeft = 1;
+            leftForwards = 1;
+            leftBackwards = 0;
+            rightForwards = 1;
+            rightBackwards = 0;
+            enableRight = 1;
         } else {
             
             if (directionChangeCounter == 0) {
@@ -121,19 +121,19 @@ void __interrupt() interrupts_Event(void) {
             uint16_t turnLeft = direction;
             
             if ( value > 100) { //Curve
-                PORTBbits.RB7 = turnLeft; // Enable left
-                PORTBbits.RB6 = 1; // left forwards
-                PORTBbits.RB5 = 0; // left backwards
-                PORTBbits.RB4 = 1; // right backwards
-                PORTBbits.RB3 = 0; // right forwards
-                PORTBbits.RB2 = !turnLeft; // Enable right
+                enableLeft = turnLeft;
+                leftForwards = 1;
+                leftBackwards = 0;
+                rightForwards = 1;
+                rightBackwards = 0;
+                enableRight = !turnLeft;
             } else { //Turn sharp
-                PORTBbits.RB7 = 1; // Enable left
-                PORTBbits.RB6 = turnLeft; // left forwards
-                PORTBbits.RB5 = !turnLeft; // left backwards
-                PORTBbits.RB4 = !turnLeft; // right forwards
-                PORTBbits.RB3 = turnLeft; // right backwards
-                PORTBbits.RB2 = 1; // Enable right
+                enableLeft = 1;
+                leftForwards = turnLeft;
+                leftBackwards = !turnLeft;
+                rightForwards = !turnLeft;
+                rightBackwards = turnLeft;
+                enableRight = 1;
             }
         }
                 

@@ -10,17 +10,13 @@
 
 #include "globals.h"
 
-#define SCK PORTAbits.RA0
-#define SDI PORTAbits.RA1
-#define SDO PORTAbits.RA2
-#define CSCON PORTAbits.RA3
-#define CSDAT PORTAbits.RA4
-
-
-
 void sPI_Setup(void);
 
+uint8_t sPI_DuplexTransmit(uint8_t byteOut);
+
 void sIP_ConfigWrite(uint8_t registerAddress, uint8_t byte);
+
+uint8_t sIP_ConfigRead(uint8_t registerAddress);
 
 
 #endif //SPI_H

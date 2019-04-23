@@ -30,51 +30,57 @@ void sPI_Setup(void) {
     TRISAbits.RA4 = 0;
 }
 
-void sPI_ToggleClock(void) {
-    SCK = !SCK;
+uint8_t sPI_DuplexTransmit(uint8_t byteOut) {
+    uint8_t byteIn = 0x00;
+
+    for (uint8_t bit = 0x80; bit; bit >>= 1) {
+        
+        SDO = ((byteOut & bit) == bit); //Bitwise AND operator (sets output - MOSI)
+
+        for (uint8_t i = 0; i < 200; i++);
+
+        SCK = 1;
+
+        if (SDI == 1) {
+            byteIn |= bit; //Bitwise OR operator (appends current bit if input is high - MISO)
+        }
+
+        for (uint8_t i = 0; i < 200; i++);
+
+        SCK = 0;
+    }
+
+    return byteIn;
 }
 
 void sIP_ConfigWrite(uint8_t registerAddress, uint8_t byte) {
-    // Start
-    SCK = 0;
+    uint8_t addressByte = 0x00;
+    
     CSCON = 0;
-    SDO = 0;
-    sPI_ToggleClock();
     
-    // Indicate write mode
-    sPI_ToggleClock();
-    SDO = 0;
-    sPI_ToggleClock();
+    // Bits 7, 6 and 0 represent start, read/write and stop respectively
+    addressByte |= (registerAddress << 1); // Append register address
     
-        
-    // Write address
-    for (uint8_t i = 0; i < 5; i++) {
-        sPI_ToggleClock();
-        SDO = (registerAddress & 0x10) == 0x10; // Binary and operator checking against binary value 0001 0000 after required shift
-        sPI_ToggleClock();
-        
-        registerAddress <<= 1;
-    }
+    sPI_DuplexTransmit(addressByte);
+    sPI_DuplexTransmit(byte);
     
-    
-    // Stop
-    SDO = 0;
-    sPI_ToggleClock();
-    sPI_ToggleClock();
-        
-    // Write byte
-    for (uint8_t i = 0; i < 8; i++) {
-        sPI_ToggleClock();
-        SDO = (byte & 0x80) == 0x80; // Binary and operator checking against binary value 1000 0000 after required shift
-        sPI_ToggleClock();
-        
-        byte <<= 1;
-    }
-    
-    
-    // End transmission
-    sPI_ToggleClock();
     CSCON = 1;
-    sPI_ToggleClock();
 }
 
+uint8_t sIP_ConfigRead(uint8_t registerAddress) {
+    uint8_t addressByte = 0x00;
+    uint8_t value;
+    
+    CSCON = 0;
+    
+    // Bits 7, 6 and 0 represent start, read/write and stop respectively
+    addressByte |= 0x40; // Append read/write bit to 1 (indicate read)
+    addressByte |= (registerAddress << 1); // Append register address
+    
+    sPI_DuplexTransmit(addressByte);
+    value = sPI_DuplexTransmit(0x00); // The data byte sent is irrelevant (set to 0x00)
+    
+    CSCON = 1;
+    
+    return value;
+}
