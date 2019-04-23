@@ -30,14 +30,18 @@ void sPI_Setup(void) {
     TRISAbits.RA4 = 0;
 }
 
+void sPI_Wait(void) {
+    for (uint8_t i = 0; i < 200; i++);
+}
+
 uint8_t sPI_DuplexTransmit(uint8_t byteOut) {
     uint8_t byteIn = 0x00;
 
-    for (uint8_t bit = 0x80; bit; bit >>= 1) {
+    for (uint8_t bit = 0x80; bit; bit >>= 1) { //Start bit as MSB only and shift right to test MSB to LSB
         
         SDO = ((byteOut & bit) == bit); //Bitwise AND operator (sets output - MOSI)
 
-        for (uint8_t i = 0; i < 200; i++);
+        sPI_Wait();
 
         SCK = 1;
 
@@ -45,7 +49,7 @@ uint8_t sPI_DuplexTransmit(uint8_t byteOut) {
             byteIn |= bit; //Bitwise OR operator (appends current bit if input is high - MISO)
         }
 
-        for (uint8_t i = 0; i < 200; i++);
+        sPI_Wait();
 
         SCK = 0;
     }

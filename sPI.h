@@ -12,6 +12,8 @@
 
 void sPI_Setup(void);
 
+void sPI_Wait(void);
+
 uint8_t sPI_DuplexTransmit(uint8_t byteOut);
 
 void sIP_ConfigWrite(uint8_t registerAddress, uint8_t byte);
