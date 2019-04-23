@@ -15,8 +15,8 @@
 #define enableLeft LATBbits.LB7
 #define leftForwards LATBbits.LB6
 #define leftBackwards LATBbits.LB5
-#define rightBackwards LATBbits.LB4
-#define rightForwards LATBbits.LB3
+#define rightForwards LATBbits.LB4
+#define rightBackwards LATBbits.LB3
 #define enableRight LATBbits.LB2
 
 //Definitions for SPI data communication
