@@ -21,8 +21,8 @@
 
 //Definitions for SPI data communication
 #define SCK LATAbits.LA0
-#define SDI LATAbits.LA1
-#define SDO LATAbits.LA2
+#define SDO LATAbits.LA1
+#define SDI LATAbits.LA2
 #define CSCON LATAbits.LA3
 #define CSDAT LATAbits.LA4
 

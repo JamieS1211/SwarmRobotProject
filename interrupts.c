@@ -95,7 +95,13 @@ void __interrupt() interrupts_Event(void) {
 //__interrupt(low_priority)
 //__interrupt(high_priority)
     
-    sIP_ConfigWrite(0x19, 0xF6);
+    sPI_ConfigWrite(0x0B, 0x96);
+    sPI_Wait();
+    sPI_Wait();
+    sPI_Wait();
+    sPI_Wait();
+    sPI_Wait();
+    sPI_ConfigWrite(0x0B, 0x72);
     
     if (INTCONbits.TMR0IE && INTCONbits.TMR0IF == 1) {
         //TMR0 Overflow Interrupt 
