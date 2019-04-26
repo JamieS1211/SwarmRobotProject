@@ -17,7 +17,7 @@
 #include "interrupts.h"
 #include "i2C.h"
 #include "vL53L0X.h"
-#include "sPI.h"
+#include "mRF89XA.h"
 
 #pragma config PLLDIV = 1           //PLL Prescaler Selection bits
 #pragma config CPUDIV = OSC1_PLL2   //System Clock Postscaler Selection bits
@@ -62,8 +62,8 @@
  * 
  * 1  - MCLR/VPP/RE3                - [PROGRAMMER VPP]
  * 2  - RA0/AN0                     - [SCK - SPI clock pin]
- * 3  - RA1/AN1                     - [SDI - SPI data in pin]
- * 4  - RA2/AN2/VREF-/CVREF         - [SDO - SPI data out pin]
+ * 3  - RA1/AN1                     - [SDO - SPI data out pin]
+ * 4  - RA2/AN2/VREF-/CVREF         - [SDI - SPI data in pin]
  * 5  - RA3/AN3/VREF+               - [SS - SPI slave select] 
  * 6  - RA4/T0CKI/C1OUT/RCV         - [NONE]
  * 7  - RA5/AN4/SS/HLVDIN/C2OUT     - [NONE]
@@ -92,9 +92,9 @@
  */
 
 void main(void) {
-    sPI_Setup();
     i2C_Setup();
     vl5310x_Setup(0x52);
+    mRF89XA_Setup();
     interrupts_Setup();
     
     //Setup timer 0 (linked to interrupt)

@@ -13,7 +13,7 @@
 #include "i2C.h"
 #include "vL53L0X.h"
 
-#include "sPI.h"
+#include "mRF89XA.h"
 
 // Interrupts - Pages 97 - 110 in data sheet
 
@@ -95,13 +95,11 @@ void __interrupt() interrupts_Event(void) {
 //__interrupt(low_priority)
 //__interrupt(high_priority)
     
-    sPI_ConfigWrite(0x0B, 0x96);
-    sPI_Wait();
-    sPI_Wait();
-    sPI_Wait();
-    sPI_Wait();
-    sPI_Wait();
-    sPI_ConfigWrite(0x0B, 0x72);
+    uint8_t data[5] = {0x69, 0x69, 0x69, 0x69, 0x99,};
+    mRF89XA_DataSend(data, 5);
+    
+    //uint8_t data[16];
+    //mRF89XA_DataFIFORead(data, 16);
     
     if (INTCONbits.TMR0IE && INTCONbits.TMR0IF == 1) {
         //TMR0 Overflow Interrupt 

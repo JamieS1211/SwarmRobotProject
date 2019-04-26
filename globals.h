@@ -22,7 +22,7 @@
 //Definitions for SPI data communication
 #define SCK LATAbits.LA0
 #define SDO LATAbits.LA1
-#define SDI LATAbits.LA2
+#define SDI PORTAbits.AN2
 #define CSCON LATAbits.LA3
 #define CSDAT LATAbits.LA4
 

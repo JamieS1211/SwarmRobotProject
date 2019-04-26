@@ -8,7 +8,7 @@
       <itemPath>vL53L0X.h</itemPath>
       <itemPath>globals.h</itemPath>
       <itemPath>i2C.h</itemPath>
-      <itemPath>sPI.h</itemPath>
+      <itemPath>mRF89XA.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -21,7 +21,7 @@
       <itemPath>interrupts.c</itemPath>
       <itemPath>vL53L0X.c</itemPath>
       <itemPath>i2C.c</itemPath>
-      <itemPath>sPI.c</itemPath>
+      <itemPath>mRF89XA.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
