@@ -95,11 +95,6 @@ void __interrupt() interrupts_Event(void) {
 //__interrupt(low_priority)
 //__interrupt(high_priority)
     
-    //uint8_t data[1] = {0x99};
-    //mRF89XA_DataSend(data, 1);
-    
-    mRF89XA_DataFIFORead();
-    
     if (INTCONbits.TMR0IE && INTCONbits.TMR0IF == 1) {
         //TMR0 Overflow Interrupt 
         

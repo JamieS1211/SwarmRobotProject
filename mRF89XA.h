@@ -14,7 +14,7 @@ void mRF89XA_Setup(void);
 
 void mRF89XA_Configuration(void);
 
-void mRF89XA_Wait(void);
+void wait(uint8_t value);
 
 uint8_t mRF89XA_DuplexTransmit(uint8_t byteOut);
 
@@ -24,7 +24,7 @@ uint8_t mRF89XA_ConfigRead(uint8_t registerAddress);
 
 void mRF89XA_DataSend(uint8_t data[], uint8_t numberOfBytes);
 
-void mRF89XA_DataFIFORead();
+void mRF89XA_DataFIFORead(void);
 
 
 #endif //SPI_H
