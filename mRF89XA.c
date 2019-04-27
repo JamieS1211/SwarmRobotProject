@@ -34,6 +34,7 @@ void mRF89XA_Setup(void) {
     TRISAbits.RA2 = 1;
     TRISAbits.RA3 = 0;
     TRISAbits.RA4 = 0;
+    TRISAbits.RA5 = 1;
     
     CSCON = 1;
     CSDAT = 1;
@@ -164,9 +165,9 @@ void mRF89XA_DataSend(uint8_t data[], uint8_t numberOfBytes) {
     
     for (uint8_t i = 0; i < numberOfBytes; i++) { 
         CSDAT = 0;
-
+        
         mRF89XA_DuplexTransmit(data[i]);
-
+        
         CSDAT = 1;
         
         wait(1);
@@ -176,9 +177,9 @@ void mRF89XA_DataSend(uint8_t data[], uint8_t numberOfBytes) {
         mRF89XA_ConfigWrite(0x00, (startValue & 0x1F) | 0x80); //Bit mask first 3 bits to 0s, then OR operator to change to '100' (transmit mode)
     }
 
-    for (uint8_t i = 0; i < 10; i++) {
-        wait(200);
-    }
+    while (IRQ1 == 0);
+    
+    wait(32);
     
     if (modeChange) {
         mRF89XA_ConfigWrite(0x00, startValue); 

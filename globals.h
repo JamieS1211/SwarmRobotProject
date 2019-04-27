@@ -22,9 +22,10 @@
 //Definitions for SPI data communication
 #define SCK LATAbits.LA0
 #define SDO LATAbits.LA1
-#define SDI PORTAbits.AN2
+#define SDI PORTAbits.RA2
 #define CSCON LATAbits.LA3
 #define CSDAT LATAbits.LA4
+#define IRQ1 PORTAbits.RA5
 
 //Global variables for direction decisions
 volatile unsigned int direction = 0;
