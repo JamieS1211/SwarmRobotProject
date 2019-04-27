@@ -186,7 +186,7 @@ void mRF89XA_DataSend(uint8_t data[], uint8_t numberOfBytes) {
     }
 }
 
-void mRF89XA_DataFIFORead(void) {
+uint8_t mRF89XA_DataFIFORead(void) {
     
     uint8_t startValue = mRF89XA_ConfigRead(0x00);
     bool modeChange = ((startValue & 0xE0) != 0x60);
@@ -199,17 +199,15 @@ void mRF89XA_DataFIFORead(void) {
         wait(200);
     }
     
-    for (uint8_t i = 0; i < 16; i++) {
-        CSDAT = 0;
+    CSDAT = 0;
 
-        mRF89XA_DuplexTransmit(0x00);
+    uint8_t value = mRF89XA_DuplexTransmit(0x00);
 
-        CSDAT = 1;
-        
-        wait(1);
-    }
+    CSDAT = 1;
     
     if (modeChange) {
         mRF89XA_ConfigWrite(0x00, startValue); 
     }
+    
+    return value;
 }

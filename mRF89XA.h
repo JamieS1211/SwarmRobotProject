@@ -24,7 +24,7 @@ uint8_t mRF89XA_ConfigRead(uint8_t registerAddress);
 
 void mRF89XA_DataSend(uint8_t data[], uint8_t numberOfBytes);
 
-void mRF89XA_DataFIFORead(void);
+uint8_t mRF89XA_DataFIFORead(void);
 
 
 #endif //SPI_H

@@ -117,14 +117,7 @@ void main(void) {
     TRISBbits.TRISB2 = 0;
         
     while(1) {
-        uint8_t data[1] = {0x99};
-        mRF89XA_DataSend(data, 1);
-
-        //mRF89XA_DataFIFORead();
-        
-        for (uint8_t i = 0; i < 20; i++) {
-            wait(200);
-        }
+        mRF89XA_DataFIFORead();
     }
     
     return;
