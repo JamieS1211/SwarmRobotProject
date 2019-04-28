@@ -95,7 +95,7 @@ void main(void) {
     i2C_Setup();
     vl5310x_Setup(0x52);
     mRF89XA_Setup();
-    //interrupts_Setup();
+    interrupts_Setup();
     
     //Setup timer 0 (linked to interrupt)
     //Settings trigger interrupt approx. every 0.06 seconds
@@ -116,9 +116,7 @@ void main(void) {
     TRISBbits.TRISB3 = 0;
     TRISBbits.TRISB2 = 0;
         
-    while(1) {
-        mRF89XA_DataFIFORead();
-    }
+    while(1);
     
     return;
 }

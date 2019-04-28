@@ -96,7 +96,7 @@ void mRF89XA_Configuration(void) {//General Configuration Registers
     
     while ((mRF89XA_ConfigRead(0x0E) & 0x02) != 0x02);
     
-    mRF89XA_ConfigWrite(0x00, 0x28); //GCONREG: GENERAL CONFIGURATION REGISTER p30
+    mRF89XA_ConfigWrite(0x00, 0x68); //GCONREG: GENERAL CONFIGURATION REGISTER p30
 }
 
 void wait(uint8_t value) {
@@ -161,7 +161,11 @@ uint8_t mRF89XA_ConfigRead(uint8_t registerAddress) {
 void mRF89XA_DataSend(uint8_t data[], uint8_t numberOfBytes) {
     
     uint8_t startValue = mRF89XA_ConfigRead(0x00);
-    bool modeChange = ((startValue & 0xE0) != 0x80);
+    bool modeChange = ((startValue & 0xE0) != 0x20);
+    
+    if (modeChange) {
+        mRF89XA_ConfigWrite(0x00, (startValue & 0x1F) | 0x20); //Bit mask first 3 bits to 0s, then OR operator to change to '001' (standby mode)
+    }
     
     for (uint8_t i = 0; i < numberOfBytes; i++) { 
         CSDAT = 0;
@@ -173,17 +177,13 @@ void mRF89XA_DataSend(uint8_t data[], uint8_t numberOfBytes) {
         wait(1);
     }
     
-    if (modeChange) {
-        mRF89XA_ConfigWrite(0x00, (startValue & 0x1F) | 0x80); //Bit mask first 3 bits to 0s, then OR operator to change to '100' (transmit mode)
-    }
+    mRF89XA_ConfigWrite(0x00, (startValue & 0x1F) | 0x80); //Bit mask first 3 bits to 0s, then OR operator to change to '100' (transmit mode)
 
     while (IRQ1 == 0);
     
     wait(32);
     
-    if (modeChange) {
-        mRF89XA_ConfigWrite(0x00, startValue); 
-    }
+    mRF89XA_ConfigWrite(0x00, startValue); 
 }
 
 uint8_t mRF89XA_DataFIFORead(void) {
@@ -193,10 +193,10 @@ uint8_t mRF89XA_DataFIFORead(void) {
     
     if (modeChange) {
         mRF89XA_ConfigWrite(0x00, (startValue & 0x1F) | 0x60); 
-    }
 
-    for (uint8_t i = 0; i < 200; i++) {
-        wait(200);
+        for (uint8_t i = 0; i < 200; i++) {
+            wait(200);
+        }
     }
     
     CSDAT = 0;
