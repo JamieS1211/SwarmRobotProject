@@ -95,7 +95,7 @@ void main(void) {
     i2C_Setup();
     vl5310x_Setup(0x52);
     mRF89XA_Setup();
-    interrupts_Setup();
+    //interrupts_Setup();
     
     //Setup timer 0 (linked to interrupt)
     //Settings trigger interrupt approx. every 0.06 seconds
@@ -116,6 +116,10 @@ void main(void) {
     TRISBbits.TRISB3 = 0;
     TRISBbits.TRISB2 = 0;
         
+    for (uint8_t i = 0; i < 100; i++) {
+        vl5310x_ReadRange(0x52);
+    }
+    
     while(1);
     
     return;
