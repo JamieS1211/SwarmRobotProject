@@ -103,9 +103,9 @@ void __interrupt() interrupts_Event(void) {
         uint16_t value = vl5310x_ReadRange(0x52);
         
         
-        uint8_t data[1];
-        data[0] = (uint8_t)value;
-        mRF89XA_DataSend(data, 1);  
+        //uint8_t data[1];
+        //data[0] = (uint8_t)value;
+        //mRF89XA_DataSend(data, 1);  
         
         if (value > 350) { //Go straight
             enableLeft = 1;
